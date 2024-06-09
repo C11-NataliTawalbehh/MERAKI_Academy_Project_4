@@ -23,6 +23,25 @@ const createCategory = (req ,res)=>{
     })
 }
 
+const getAllCategory = (req, res) => {
+    categoryModel
+      .find()
+      .then((category) => {
+          res.status(200).json({
+            success: true,
+            message: `All the category`,
+            category: category,
+          });
+        }) 
+      .catch((err) => {
+        res.status(500).json({
+          success: false,
+          message: `Server Error`,
+          err: err.message,
+        });
+      });
+  };
+
 const getCategoryById = (req, res) => {
     let id = req.params.id;
     categoryModel
@@ -49,4 +68,4 @@ const getCategoryById = (req, res) => {
       });
   };
 
-module.exports = {createCategory ,getCategoryById}
+module.exports = {createCategory ,getCategoryById , getAllCategory}

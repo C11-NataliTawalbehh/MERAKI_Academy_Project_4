@@ -2,7 +2,7 @@ console.log("product routes");
 const express = require("express");
 const {createNewProduct ,getAllProduct ,updateProductById ,deleteProductById } = require("../controllers/product");
 const {createNewComment} = require("../controllers/comment");
-const {createCategory,getCategoryById} = require("../controllers/category");
+const {createCategory,getCategoryById ,getAllCategory} = require("../controllers/category");
 const productRoter = express.Router();
 
 const authentication =require("../middleware/authentication");
@@ -16,6 +16,7 @@ productRoter.put("/:id" , updateProductById);
 productRoter.delete("/:id" ,deleteProductById);
 productRoter.post("/category",authentication,createCategory);
 productRoter.get("/:id/category",authentication,getCategoryById);
+productRoter.get("/category",authentication,getAllCategory);
 
 
 module.exports = productRoter;
