@@ -13,13 +13,13 @@ const roleRouter = require("./routes/role");
 const userRoter = require("./routes/user");
 const productRoter = require("./routes/product");
 const favoriteRoter = require("./routes/favorite")
-// const categoryRouter = require("./routes/category");
+const checkoutRoter = require("./routes/checkout");
 
 app.use("/roles" , roleRouter);
 app.use("/user" , userRoter);
 app.use("/product" ,productRoter);
 app.use("/favorite",favoriteRoter);
-// app.use("/category" , categoryRouter);
+app.use("/checkout" , checkoutRoter);
 // Handles any other endpoints [unassigned - endpoints]
 app.use("*", (req, res) => res.status(404).json("NO content at this path"));
 
