@@ -12,10 +12,12 @@ app.use(express.json());
 const roleRouter = require("./routes/role");
 const userRoter = require("./routes/user");
 const productRoter = require("./routes/product");
+// const categoryRouter = require("./routes/category");
 
 app.use("/roles" , roleRouter);
 app.use("/user" , userRoter);
 app.use("/product" ,productRoter);
+// app.use("/category" , categoryRouter);
 // Handles any other endpoints [unassigned - endpoints]
 app.use("*", (req, res) => res.status(404).json("NO content at this path"));
 

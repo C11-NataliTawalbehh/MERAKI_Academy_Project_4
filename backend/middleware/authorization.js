@@ -9,6 +9,10 @@ const authorization = (requiredPermission)=>{
 }
 }
 module.exports = authorization;
+
+
+
+
 // const authorization = (requiredPermission) => {
 //     return async(req, res, next) => {
         
