@@ -1,5 +1,4 @@
 const mongoose = require("mongoose");
-const bcrypt = require("bcrypt");
 
 const userSchema = new mongoose.Schema({
     firstName:{type:String},
@@ -8,8 +7,8 @@ const userSchema = new mongoose.Schema({
     email:{type:String},
     password:{type:String},
     role:{type: mongoose.Schema.Types.ObjectId, ref: "Role" },
-    favorite:[{name:{type:String} , description:{type:String} ,price:{type:Number}}]
+    favorite:{type:[String]}
 })
 
-module.exports = mongoose.models("User" , userSchema);
+module.exports = mongoose.model("User" , userSchema);
 

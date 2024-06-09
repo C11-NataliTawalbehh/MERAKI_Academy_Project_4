@@ -1,0 +1,35 @@
+const jwt = require("jsonwebtoken");
+
+const authentication = (req,res,next)=>{
+    try{
+        if(!req.headers.authorization){
+            return res.status(403).json({
+                success: false,
+                message: `Forbidden`,
+              });
+        }
+        const token = req.headers.authorization.split(" ").pop();
+        console.log(token);
+        const secretKey = process.env.SECRET;
+        jwt.verify(token,secretKey,(error , result)=>{
+            if(error){
+             res.status(403).json({
+                 success: false,
+                 message: `The token is invalid or expired`,
+              });
+            } else {
+                req.token = result;
+                console.log("autication:",req.token);
+                next();
+            }
+        })
+    }catch(error){
+        res.status(500).json({
+            success: false,
+            message: `Server Error`,
+            err: err.message,
+          });
+    }
+}
+
+module.exports = authentication;
