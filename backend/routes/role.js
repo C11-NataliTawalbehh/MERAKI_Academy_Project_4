@@ -12,10 +12,10 @@ module.exports = roleRouter
 
 
 // role :"User"
-//permissions :["CREATE COMMENT" , "DELETE COMMENT"]
+//permissions :["CREATE_COMMENT" , "DELETE_COMMENT"]
 
 
 //role :"ADMEN"
-//permissions :["CREATE PRODUCT", "DELETE PRODUCT" , 
-//"UPDATE PRODUCT" ,"CREATE COMMENT" ,  "DELETE COMMENT" ,
-// "UPDATE COMMENT"]
+//permissions :["CREATE_PRODUCT", "DELETE_PRODUCT" , 
+//"UPDATE_PRODUCT" ,"CREATE_COMMENT" ,  "DELETE_COMMENT" ,
+// "UPDATE_COMMENT"]
