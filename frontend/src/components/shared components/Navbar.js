@@ -12,7 +12,11 @@ const Navbar = ()=>{
 
     <Link to={"/add product"}>Add Product</Link>
 
+    <Link to={"/add category"}>Add Category</Link>
 
+    <Link to={"/dashboard"}>Dashboard</Link>
+
+    {/* <Link to={"/search"}>Search</Link> */}
     </>
    )
 }

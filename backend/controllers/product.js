@@ -1,13 +1,12 @@
 const productModel = require("../models/productSchema")
-
 const createNewProduct = (req ,res) =>{
-    const {name , description ,price , img,quantity,comment,category} =req.body;
+    const {name , description ,price , image,quantity,comment,category} =req.body;
     const user = req.token.userId;
     const newProduct = new productModel({
         name,
         description,
         price,
-        img,
+        image,
         quantity,
         category,
         comment,
@@ -111,4 +110,14 @@ const deleteProductById = (req, res) => {
         });
       });
   };
-module.exports = {createNewProduct , getAllProduct ,updateProductById ,deleteProductById};
+
+// const searchProduct = async(req,res)=>{
+//   const {query} = req.query;
+//   try{
+//     const product =await productModel.find({name:{$regex:query , $options:"i"}});
+//     res.json(product)
+//   }catch(error){
+//     res.status(500).json({error:"server Error"})
+//   }
+// }  
+module.exports = {createNewProduct , getAllProduct ,updateProductById ,deleteProductById };

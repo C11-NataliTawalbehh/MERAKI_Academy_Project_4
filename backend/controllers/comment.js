@@ -4,7 +4,7 @@ console.log("comment controllers");
 const createNewComment = (req , res)=>{
     id = req.params.id;
     const {comment} = req.body;
-    const commenter = req.token.userId;
+    const commenter = req.token.userid;
     const newComment = new commentModel({
         comment,
         commenter,
@@ -32,4 +32,29 @@ const createNewComment = (req , res)=>{
     })
 }
 
-module.exports = {createNewComment}
+const deleteCommentById = (req, res) => {
+  const id = req.params.id;
+  commentModel
+    .findByIdAndDelete(id)
+    .then((result) => {
+      if (!result) {
+        return res.status(404).json({
+          success: false,
+          message: `The comment with id => ${id} not found`,
+        });
+      }
+      res.status(200).json({
+        success: true,
+        message: `comment deleted`,
+      });
+    })
+    .catch((err) => {
+      res.status(500).json({
+        success: false,
+        message: `Server Error`,
+        err: err.message,
+      });
+    });
+};
+
+module.exports = {createNewComment,deleteCommentById}

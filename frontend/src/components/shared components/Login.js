@@ -20,7 +20,7 @@ const Login = ()=>{
             setToken(token);
             localStorage.setItem("token",token)
             setIsLoggedIn(true)
-            navigate("/product");
+            navigate("/Dashboard");
         }catch(error){
             setError(error.response.data.message)
         }

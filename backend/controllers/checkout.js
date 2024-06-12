@@ -1,11 +1,12 @@
 const checkoutModel = require("../models/checkoutSchema");
 
 const createCheckout = (req ,res)=>{
-    const {idProduct , totalPrice ,paymentIsCash} = req.body;
+    const {provid ,paymentIsCash} = req.body;
+    const user = req.token.userid
     const newCheckout = new checkoutModel({
-        idProduct,
-        totalPrice,
+        provid,
         paymentIsCash,
+        user,
     })
 
     newCheckout

@@ -1,12 +1,14 @@
 import axios from "axios";
-import { useState } from "react";
-
+import { useState ,useContext } from "react";
+import { UserContext } from "../../App";
 const AddCategory = () =>{
     const [name , setName] = useState("")
     const [message , setMessage] = useState("")
+    const {token }=useContext(UserContext)
     const handelOnClick = ()=>{
         axios.post("http://localhost:5000/product/category",{name},{headers:{
-            Authorization:`Bearer ${localStorage.getItem('token')}`}})
+            Authorization:`Bearer ${token}`
+        }})
             .then((result)=>{
                 console.log(result);
              setMessage(result.data.message)

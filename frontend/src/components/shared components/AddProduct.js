@@ -9,15 +9,21 @@ const AddProduct = ()=>{
     const [description , setDescription] =useState("");
     const [price ,setPrice] = useState("");
     const [quantity ,setQuantity] = useState("");
-    const [message , setMessage] = useState("")
+    const [category ,setCategory] = useState("");
+    const [comment , setComment] = useState("");
+    const [user ,setUser] = useState("");
+    const [img , setImg] = useState("");
+    const [message , setMessage] = useState("");
     const {token }=useContext(UserContext)
+//========================================================= Add Product ===================================================================    
  const handelOnClicAddProduct = ()=>{
     const newProduct = {
         name,
         description,
         price,
-        image,
+        image:url,
         quantity,
+        
     }
 
   axios.post("http://localhost:5000/product/",newProduct,{headers:{
@@ -31,7 +37,7 @@ const AddProduct = ()=>{
     setMessage(error.response.data.message)
   })
  }
-
+//================================================================= Upload Image =================================================================
  const uploadImage = () => {
     const data = new FormData()
     data.append("file", image)
