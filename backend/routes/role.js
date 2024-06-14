@@ -16,6 +16,6 @@ module.exports = roleRouter
 
 
 //role :"ADMEN"
-//permissions :["CREATE_PRODUCT", "DELETE_PRODUCT" , 
+//permissions :["ADD_PRODUCT", "DELETE_PRODUCT" , 
 //"UPDATE_PRODUCT" ,"CREATE_COMMENT" ,  "DELETE_COMMENT" ,
 // "UPDATE_COMMENT"]

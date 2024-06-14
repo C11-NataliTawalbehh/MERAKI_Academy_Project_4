@@ -12,7 +12,6 @@ const AddProduct = ()=>{
     const [category ,setCategory] = useState("");
     const [comment , setComment] = useState("");
     const [user ,setUser] = useState("");
-    const [img , setImg] = useState("");
     const [message , setMessage] = useState("");
     const {token }=useContext(UserContext)
 //========================================================= Add Product ===================================================================    
@@ -23,7 +22,7 @@ const AddProduct = ()=>{
         price,
         image:url,
         quantity,
-        
+         
     }
 
   axios.post("http://localhost:5000/product/",newProduct,{headers:{

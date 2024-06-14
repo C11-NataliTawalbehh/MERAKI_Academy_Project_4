@@ -15,9 +15,9 @@ productRoter.get("/" , authentication,getAllProduct);
 productRoter.put("/:id" , updateProductById);
 productRoter.delete("/:id" ,deleteProductById);
 productRoter.delete("/:id/category" ,deleteCategoryById);
-productRoter.delete("/:id/comment" ,deleteCommentById);
+productRoter.delete("/:productId/comment/:commentId" ,deleteCommentById);
 productRoter.post("/category",authentication,createCategory);
-productRoter.get("/:id/category",authentication,getCategoryById);
+productRoter.get("/category/:id",authentication,getCategoryById);
 productRoter.get("/category",authentication,getAllCategory);
 // productRoter.get("/search" ,searchProduct);
 

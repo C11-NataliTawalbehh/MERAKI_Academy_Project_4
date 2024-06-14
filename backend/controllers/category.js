@@ -1,10 +1,9 @@
 const categoryModel = require("../models/categorySchema");
 
 const createCategory = (req ,res)=>{
-    const {name , img} = req.body;
+    const {name} = req.body;
     const newCategory = new categoryModel({
         name,
-        img,
     })
 
     newCategory
@@ -67,7 +66,7 @@ const getCategoryById = (req, res) => {
         });
       });
   };
-
+  
   const deleteCategoryById = (req, res) => {
     const id = req.params.id;
     categoryModel

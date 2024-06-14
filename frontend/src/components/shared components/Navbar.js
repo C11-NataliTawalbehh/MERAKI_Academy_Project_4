@@ -15,7 +15,7 @@ const Navbar = ()=>{
     <Link to={"/add category"}>Add Category</Link>
 
     <Link to={"/dashboard"}>Dashboard</Link>
-
+    <Link to={"/favorite"}>Favorite</Link>
     {/* <Link to={"/search"}>Search</Link> */}
     </>
    )

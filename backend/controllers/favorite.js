@@ -1,9 +1,17 @@
 const userModel = require("../models/userSchema");
 
-const createFavorite = (req,res)=>{
-    const {userId , favorite} = req.body;
+const addFavorite = (req,res)=>{
+    const {favorite} = req.body;
+    const user = req.token.userId;
+    console.log(user);
+    if(!user || !favorite){
+      return res.status(400).json({
+        success:false,
+        message:"user id and favorite product id are required"
+      })
+    }
     userModel 
-    .findById(userId)
+    .findById(user ,{$push:{favorites:favorite}} ,{new:true})
     .then((result)=>{
        if(!result){
         return res.status(404).json({
@@ -11,8 +19,6 @@ const createFavorite = (req,res)=>{
             message:"user not found"
         })
        }
-       result.favorite.push(favorite);
-       return result.save();
     })
     .then(result =>{
         res.status(201).json({
@@ -28,7 +34,15 @@ const createFavorite = (req,res)=>{
             error:error.message
         })
     })
-}
+   
+  }
+
+  // userModel.findById(userid, {$push: {favorites: favorite}}, {new: true})
+  // .then((result) => {
+  //   console.log(result);
+  // }).catch(err => {
+  //   console.log(err.message);
+  // })
 
 const deleteFavoriteById = (req, res) => {
     const id = req.params.id;
@@ -55,4 +69,4 @@ const deleteFavoriteById = (req, res) => {
       });
   };
 
-module.exports = {createFavorite , deleteFavoriteById}
+module.exports = {addFavorite , deleteFavoriteById}

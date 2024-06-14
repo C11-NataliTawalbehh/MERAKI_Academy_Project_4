@@ -1,8 +1,8 @@
 const express = require("express");
-const {createFavorite , deleteFavoriteById} = require("../controllers/favorite")
+const {addFavorite , deleteFavoriteById} = require("../controllers/favorite")
 
 const favoriteRoter = express.Router()
-favoriteRoter.post("/",createFavorite)
+favoriteRoter.get("/",addFavorite)
 favoriteRoter.delete("/:id" ,deleteFavoriteById);
 
 module.exports = favoriteRoter;

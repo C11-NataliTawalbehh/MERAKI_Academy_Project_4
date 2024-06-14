@@ -5,7 +5,7 @@ const Register =()=>{
     const [lastName , setLastName] = useState("");
     const [age , setAge] = useState("");
     const [role , setRole] = useState("");
-    const [favorite , setFavorite] = useState([])
+    const [favorite , setFavorite] = useState([{}])
     const [email , setEmail] = useState("");
     const [password , setPassword] = useState("");
     const [message , setMessage] = useState("");
@@ -17,7 +17,7 @@ const Register =()=>{
           lastName,
           age,
           role:"6668aa851da32c9484a699a6",
-          favorite,
+          favorite:[],
           email,
           password,
         }
@@ -33,7 +33,7 @@ const Register =()=>{
     })
     }
     return (
-        <>
+        <div class="mb-3">
         <p>Register</p>
         <input type="text" placeholder="First Name" onChange={(e)=>{
             setFirstName(e.target.value)
@@ -53,7 +53,7 @@ const Register =()=>{
         <br></br>
         <button onClick={handelOnClicRegister}>Register</button>
         {message && <p>{message}</p>}
-        </>
+        </div>
     )
 }
 export default Register;

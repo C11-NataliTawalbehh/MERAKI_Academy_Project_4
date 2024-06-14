@@ -1,7 +1,7 @@
 const productModel = require("../models/productSchema")
 const createNewProduct = (req ,res) =>{
     const {name , description ,price , image,quantity,comment,category} =req.body;
-    const user = req.token.userId;
+    const user = req.token.userid;
     const newProduct = new productModel({
         name,
         description,
@@ -31,7 +31,7 @@ const createNewProduct = (req ,res) =>{
 
 
 const getAllProduct = (req, res) => {
-    const user = req.token.userId
+    const user = req.token.userid;
     productModel
       .find({user})
       .populate("category")

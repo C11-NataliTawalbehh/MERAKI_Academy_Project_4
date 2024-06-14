@@ -33,14 +33,14 @@ const createNewComment = (req , res)=>{
 }
 
 const deleteCommentById = (req, res) => {
-  const id = req.params.id;
+  const {productId ,commentId}= req.params;
   commentModel
-    .findByIdAndDelete(id)
+    .findByIdAndDelete(commentId)
     .then((result) => {
       if (!result) {
         return res.status(404).json({
           success: false,
-          message: `The comment with id => ${id} not found`,
+          message: `The comment with id => ${commentId} not found`,
         });
       }
       res.status(200).json({
