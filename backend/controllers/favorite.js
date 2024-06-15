@@ -1,8 +1,8 @@
 const userModel = require("../models/userSchema");
 
 const addFavorite = (req,res)=>{
-    const {favorite} = req.body;
-    const user = req.token.userId;
+    const {id} = req.body;
+    const user = req.token.userid;
     console.log(user);
     if(!user || !favorite){
       return res.status(400).json({
@@ -11,7 +11,8 @@ const addFavorite = (req,res)=>{
       })
     }
     userModel 
-    .findById(user ,{$push:{favorites:favorite}} ,{new:true})
+    .findById(user ,{$push:{favorite:id}} ,{new:true})
+    .save()
     .then((result)=>{
        if(!result){
         return res.status(404).json({

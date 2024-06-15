@@ -8,9 +8,9 @@ const createNewProduct = (req ,res) =>{
         price,
         image,
         quantity,
-        category,
         comment,
         user,
+        category,
     })
     
     newProduct
@@ -34,7 +34,6 @@ const getAllProduct = (req, res) => {
     const user = req.token.userid;
     productModel
       .find({user})
-      .populate("category")
       .populate("comment")
       .exec()
       .then((product) => {
@@ -54,6 +53,28 @@ const getAllProduct = (req, res) => {
       });
   };
 
+  const getProductByCategory =(req ,res)=>{
+    const category  = req.params.category;
+    const userid = req.token.userid;
+    productModel 
+    .find({category})
+    .exec()
+    .then((product)=>{
+      res.status(200).json({
+        success: true,
+            message: `All the product`,
+            userId: userid,
+            product: product
+      })
+    })
+    .catch((err)=>{
+      res.status(500).json({
+        success: false,
+        message: `Server Error`,
+        err: err.message,
+      });
+  })
+  }
 const updateProductById = (req,res)=>{
     const id = req.params.id;
     const filter = req.body;
@@ -120,4 +141,4 @@ const deleteProductById = (req, res) => {
 //     res.status(500).json({error:"server Error"})
 //   }
 // }  
-module.exports = {createNewProduct , getAllProduct ,updateProductById ,deleteProductById };
+module.exports = {createNewProduct , getAllProduct ,updateProductById ,deleteProductById ,getProductByCategory };

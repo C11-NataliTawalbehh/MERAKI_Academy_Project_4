@@ -1,35 +1,49 @@
 const categoryModel = require("../models/categorySchema");
-
+const productModel= require("../models/productSchema")
 const createCategory = (req ,res)=>{
-    const {name} = req.body;
+    const {categoryName} = req.body;
+    id = req.params.id;
     const newCategory = new categoryModel({
-        name,
+      categoryName,
     })
 
     newCategory
     .save()
     .then((result)=>{
+       productModel
+       .findByIdAndUpdate({_id:id},{$push:{categories:result._id}},{new:true})
+       .then(()=>{
         res.status(201).json({success: true,
             message: "category created",
             category:result})
-    })
-    .catch((error)=>{
-        res.status(500).json({
+
+        })
+       .catch((error)=>{
+          res.status(500).json({
             success: false,
             message: "Server Error",
             error: error.message
          })
-    })
+        })
+  })
+  .catch((error)=>{
+    res.status(500).json({
+      success: false,
+      message: "Server Error",
+      error: error.message
+   })
+  })
+  
 }
 
 const getAllCategory = (req, res) => {
     categoryModel
       .find()
-      .then((category) => {
+      .then((categories) => {
           res.status(200).json({
             success: true,
-            message: `All the category`,
-            category: category,
+            message: `All the categories`,
+            categories: categories,
           });
         }) 
       .catch((err) => {
@@ -67,6 +81,7 @@ const getCategoryById = (req, res) => {
       });
   };
   
+
   const deleteCategoryById = (req, res) => {
     const id = req.params.id;
     categoryModel
@@ -91,5 +106,7 @@ const getCategoryById = (req, res) => {
         });
       });
   };
+
+
 
 module.exports = {createCategory ,getCategoryById , getAllCategory ,deleteCategoryById}

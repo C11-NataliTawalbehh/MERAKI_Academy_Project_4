@@ -1,7 +1,7 @@
 import axios from "axios";
-import { useState ,useContext } from "react";
+import { useState ,useContext, useEffect } from "react";
 import { UserContext } from "../../App";
-
+import Category from "./Category";
 const AddProduct = ()=>{
     const [image, setImage ] = useState("");
     const [ url, setUrl ] = useState("");
@@ -9,11 +9,13 @@ const AddProduct = ()=>{
     const [description , setDescription] =useState("");
     const [price ,setPrice] = useState("");
     const [quantity ,setQuantity] = useState("");
-    const [category ,setCategory] = useState("");
+    const [selectedCategory ,setSelectedCategory] = useState("")
+    const [categoryName , setCategoryName] = useState("")
     const [comment , setComment] = useState("");
     const [user ,setUser] = useState("");
     const [message , setMessage] = useState("");
     const {token }=useContext(UserContext)
+    const [category ,setCategory ]= useState(["candel","backage"]);
 //========================================================= Add Product ===================================================================    
  const handelOnClicAddProduct = ()=>{
     const newProduct = {
@@ -22,7 +24,8 @@ const AddProduct = ()=>{
         price,
         image:url,
         quantity,
-         
+        category:categoryName
+    
     }
 
   axios.post("http://localhost:5000/product/",newProduct,{headers:{
@@ -34,8 +37,25 @@ const AddProduct = ()=>{
   })
   .catch((error)=>{
     setMessage(error.response.data.message)
+    
   })
  }
+
+//  const getAllCategory =async ()=>{
+//   try{
+//       const response = await axios.get("http://localhost:5000/categories/",{ headers: {
+//         Authorization: `Bearer ${token}`
+//     }})
+//     //  console.log(response.data.caegories);
+//      setCategories(response.data.categories)
+//   }catch(error){
+//     console.log(error)
+//   }
+// }
+
+// useEffect(()=>{
+//   getAllCategory()
+// },[])
 //================================================================= Upload Image =================================================================
  const uploadImage = () => {
     const data = new FormData()
@@ -67,6 +87,20 @@ return(
     <input type="text" placeholder="price" onChange={(e)=>{
         setPrice(e.target.value)
     }}/>
+    <br/>
+    {/* <input type="text" placeholder="categoryName" onChange={(e)=>{
+        setCategoryName(e.target.value)
+    }}/> */}
+    
+    <br/>
+    {/* <Category setCategory={setCategory} /> */}
+    <label>Category:</label>
+    <select value={categoryName} onChange={(e)=>setCategory(e.target.value)} required>
+    <option value="">Select Category</option>
+    {category.map((category , i)=>(
+        <option key={i} value={category}>{category}</option>
+    ))}
+    </select>
     <br />
     <label>Image URL:</label>
     <div>
@@ -91,3 +125,5 @@ return(
 }
 
 export default AddProduct;
+
+

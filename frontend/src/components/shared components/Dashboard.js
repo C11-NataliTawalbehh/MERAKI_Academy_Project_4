@@ -3,10 +3,14 @@ import { useState,useContext ,useEffect} from "react";
 import { UserContext } from "../../App";
 import AddFavorite from "./AddFavorite";
 import AddCategory from "./AddCategory";
+import { Navigate ,useNavigate } from "react-router-dom";
 const Dashboard = ()=>{
+  const navigate = useNavigate();
     const [product , setProduct] = useState([])
-    const [category , setCategory] = useState([])
+    // const [categories , setCategories] = useState([])
+
     const [name , setName] = useState("");
+    const [categoryName , setCategoryName] = useState("")
     const [description , setDescription] =useState("");
     const [price ,setPrice] = useState("");
     const [quantity ,setQuantity] = useState("");
@@ -16,15 +20,15 @@ const Dashboard = ()=>{
     const [userid , setUserid] = useState("");
     const [favorite , setFavorite] = useState("");
     const [message ,setMessage] = useState("");
-    
-    const {token }=useContext(UserContext);
+    const category = ["candel","backage"];
+    const {token}=useContext(UserContext);
 //============================================================ Get All Product =================================================================
     const getAllProduct = async()=>{
         try{
             const response = await axios.get(`http://localhost:5000/product/`,{ headers: {
               Authorization: `Bearer ${token}`
           }})
-           console.log(response.data.product);
+           console.log(response.data);
            setProduct(response.data.product)
         }catch(error){
           console.log(error)
@@ -102,58 +106,59 @@ const Dashboard = ()=>{
   }
 
 //===================================================== Get All Category =================================================================    
-    const getAllCategory =async ()=>{
-        try{
-            const response = await axios.get("http://localhost:5000/product/category",{ headers: {
-              Authorization: `Bearer ${token}`
-          }})
-          //  console.log(response.data.caegory);
-           setCategory(response.data.category)
-        }catch(error){
-          console.log(error)
-        }
-    }
+    // const getAllCategory =async ()=>{
+    //     try{
+    //         const response = await axios.get("http://localhost:5000/categories/",{ headers: {
+    //           Authorization: `Bearer ${token}`
+    //       }})
+    //       //  console.log(response.data.caegory);
+    //        setCategories(response.data.categories)
+    //     }catch(error){
+    //       console.log(error)
+    //     }
+    // }
 
-     useEffect(()=>{
-        getAllCategory()
-      },[])
+    //  useEffect(()=>{
+    //     getAllCategory()
+    //   },[token])
     // if (!product){
     //   return "hi"
     // }
 
 //===================================================== Get All Category By Id =============================================================
-   const handelCategoryById = async(id)=>{
-   try{
-    const response = await axios.get(`http://localhost:5000/product/category/${id}`,{ headers: {
-      Authorization: `Bearer ${token}`
-  }})
-  console.log(response);
-  if(response.data.product){
-    setProduct(response.data.product)
-  }
-  console.log(response.data);
-  // setProduct(response.data.product)
-   }catch (error){
-    console.log(error);
-   }
-   }
+  //  const handelCategoryById = async(id)=>{
+  //  try{
+  //   const response = await axios.get(`http://localhost:5000/categories/${id}`,{ headers: {
+  //     Authorization: `Bearer ${token}`
+  // }})
+  // console.log(response);
+  // if(response.data.product){
+  //   setProduct(response.data.product)
+  //   setCategories(response.data.categories)
+  // }
+  // console.log(response.data);
+  // // setProduct(response.data.product)
+  //  }catch (error){
+  //   console.log(error);
+  //  }
+  //  }
 //====================================================== Delete Category ====================================================================
-    const handelDeleteCategory = async(id)=>{
-        try {
-            const response =await axios.delete(`http://localhost:5000/product/${id}/category`,{ headers: {
-              Authorization: `Bearer ${token}`}})
+    // const handelDeleteCategory = async(id)=>{
+    //     try {
+    //         const response =await axios.delete(`http://localhost:5000/categories/${id}`,{ headers: {
+    //           Authorization: `Bearer ${token}`}})
               
-              if (response.status === 200  ){
-                const deleteCategory= category.filter(category =>
-                  category._id !== id
-                )
-                setCategory(deleteCategory)
+    //           if (response.status === 200  ){
+    //             const deleteCategory= categories.filter(category =>
+    //               category._id !== id
+    //             )
+    //             setCategories(deleteCategory)
         
-              }
-           }catch(error){
-            console.log(error);
-           }
-    }  
+    //           }
+    //        }catch(error){
+    //         console.log(error);
+    //        }
+    // }  
 
  //====================================================== Add Favorite =====================================================================
     // const addFavorite = async()=>{
@@ -170,23 +175,56 @@ const Dashboard = ()=>{
     //  }catch(error){
     //    setMessage(error.response.data.message)
     //  }}
+  
+    // const getProductByCategory =async (id)=>{
+    //   try{
+    //       const response = await axios.get(`http://localhost:5000/product/categories/${id}`,{ headers: {
+    //         Authorization: `Bearer ${token}`
+    //     }})
+    //      console.log(response.data.caegories);
+    //      setProduct(response.data.product)
+    //   }catch(error){
+    //     console.log(error)
+    //   }
+    // }
+    
+    // useEffect(()=>{
+    //   getProductByCategory()
+    // },[])
 
+    const handelCategoryClick =async(categoryName)=>{
+       try{
+        const response = await axios.get(`http://localhost:5000/product/category/${categoryName}`,{ headers: {
+          Authorization: `Bearer ${token}`
+      }})
+      console.log(response.data);
+      setProduct(response.data.product)
+       }catch(error){
+        console.log(error);
+       }
+
+    }
+
+    const handelOnClickHome = ()=>{
+      getAllProduct()
+      
+    }
     return(
         <>
-
+         <button onClick={handelOnClickHome}>Home</button>
          <div className="category">
-                {category.map((category)=>
-                (<>
-                <div key={category._id}>
-                <button onClick={()=>handelCategoryById(category._id)}>{category.name}</button>
-                <button onClick={()=>handelDeleteCategory(category._id)}>Delete</button>
-                </div>
-                </> ))}
+            {category.map((category,i)=>(
+              <button key={i}  onClick={()=>handelCategoryClick(category)}>{category}</button>
+            ))}
             </div>
+            
           {/* <div>
            <button onClick={addFavorite}>Favorite</button>
            {message&& <p>{message}</p>} 
             </div>   */}
+
+
+        <div>
         <ul>
            
          {product&&product.map((prd)=>{
@@ -197,8 +235,6 @@ const Dashboard = ()=>{
                 <p>{prd.description}</p>
                 <p>Price:{prd.price}</p>
                 <p>Quantity:{prd.quantity}</p>
-                <p>{prd.category}</p>
-                {/* <AddCategory category={prd.category} /> */}
                 {prd.comment&& prd.comment.map(comments =>(
                   <div key={comments._id}>
                     <p>Comment:{comments.comment}</p>
@@ -216,6 +252,7 @@ const Dashboard = ()=>{
           )
                  })}
         </ul>
+        </div> 
         </>
     )
 }

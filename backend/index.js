@@ -14,12 +14,14 @@ const userRoter = require("./routes/user");
 const productRoter = require("./routes/product");
 const favoriteRoter = require("./routes/favorite")
 const checkoutRoter = require("./routes/checkout");
+const categoryRouter = require("./routes/category");
 
 app.use("/roles" , roleRouter);
 app.use("/user" , userRoter);
 app.use("/product" ,productRoter);
 app.use("/favorite",favoriteRoter);
 app.use("/checkout" , checkoutRoter);
+app.use("/categories" ,categoryRouter);
 // Handles any other endpoints [unassigned - endpoints]
 app.use("*", (req, res) => res.status(404).json("NO content at this path"));
 
