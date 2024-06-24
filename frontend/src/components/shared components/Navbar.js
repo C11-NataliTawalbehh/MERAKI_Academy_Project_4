@@ -1,43 +1,63 @@
 import React,{useContext} from "react";
 import { Link } from "react-router-dom";
 import { UserContext } from "../../App";
-import { FiAlignCenter } from "react-icons/fi"
+import { FaHome } from "react-icons/fa";
+import { FiUser, FiClipboard, FiLogOut ,FiAlignCenter ,FiShoppingCart} from 'react-icons/fi'; 
+import { FaShoppingCart } from "react-icons/fa";
 const Navbar = ()=>{
-   const {setToken , isLoggedIn} = useContext(UserContext);
+   const {isLoggedIn , handelLogout} = useContext(UserContext)
    return (
      <>
-     
-   <ul class="nav">
-   <li class="nav-item">
-    <a class="nav-link active" aria-current="page" href="#"><Link to={"/login"}>Login</Link></a>
-   </li>
-   <li class="nav-item">
-    <a class="nav-link" href="#"><Link to={"/dashboard"}>Dashboard</Link> </a>
-   </li>
-    <li class="nav-item">
-    <a class="nav-link" href="#"><Link to={"/add product"} ><FiAlignCenter/>
-    <span>AddProduct</span>
-    </Link></a>
-   </li>
-    {/* <li class="nav-item">
-    <a class="nav-link disabled" aria-disabled="true"><Link to={"/add product"} ><FiAlignCenter/>
-    <span>AddProduct</span>
-    </Link></a>
-    </li> */}
-   </ul>
-     {/* <Link to={"/register"}>Register</Link> */}
+       <div className="App">
+    <div className="name-container">
+      {/* محتوى اسم التطبيق */}
+    </div>
 
-    {/* <Link to={"/login"}>Login</Link> */}
+    <nav>
+      
+        
+          <Link to={"/login"}><FiUser /> </Link>
+        
+        
+          <Link to={"/add product"}><FiAlignCenter /> </Link>
+        
+        
+          <Link to={"/admin/Checkout"}><FiClipboard /> </Link>
+        
+        
+          <Link to={"/dashboard"}><FaHome /> </Link>
+        
+        
+          <Link to={"/cart/:id"}><FaShoppingCart /> </Link>
+        
+      
+    </nav>
 
-    {/* <Link to={"/add product"} ><FiAlignCenter/>
-    <span>AddProduct</span>
-    </Link> */}
-
-    {/* <Link to={"/add category"}></Link> */}
+    {/* محتوى الصفحات الرئيسية للتطبيق */}
+   </div>
+     {/* <div>
+      <nav>     
+    <Link to={"/dashboard"}>Dashboard</Link>
+     <Link to={"/search"}>Search</Link> 
+     <Link to={"/admin/Checkout"}>Checkout</Link>
+    <Link to={"/add product"} ><FiAlignCenter/>
+    </Link>
+      {isLoggedIn ? (
+      <button onClick={handelLogout}>Logout</button>
+    ):( <Link to={"/login"}>Login</Link>)}
+    </nav>
+    </div> */}
     
-    {/* <Link to={"/dashboard"}>Dashboard</Link> */}
-    {/* <Link to={"/favorite"}>Favorite</Link> */}
-    {/* <Link to={"/search"}>Search</Link> */}
+     {/* <Link to={"/login"}>Login</Link>
+
+    <Link to={"/add product"} ><FiAlignCenter/>
+    </Link> 
+
+     <Link to={"/admin/Checkout"}>Checkout</Link> 
+    
+      <Link to={"/dashboard"}>Dashboard</Link> 
+     <Link to={"/cart/:id"}>Cart</Link>   */}
+    
     </>
    )
 }

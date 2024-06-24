@@ -1,0 +1,13 @@
+.rating {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .rating input {
+    display: none;
+  }
+  
+  .rating label {
+    cursor: pointer;
+  }

@@ -2,6 +2,8 @@ import axios from "axios";
 import { useContext , useState } from "react";
 import { UserContext } from "../../App";
 import { Navigate ,useNavigate } from "react-router-dom";
+import { Container, Row, Col, Form, Button, Alert } from "react-bootstrap";
+
 const Login = ()=>{
     const navigate = useNavigate();
     const {setToken , setIsLoggedIn} = useContext(UserContext);
@@ -26,19 +28,19 @@ const Login = ()=>{
             setToken(token);
             localStorage.setItem("token",token)
             setIsLoggedIn(true)
-            navigate("/Dashboard");
+            navigate('/dashboard')
         }catch(error){
             setError(error.response.data.message)
         }
     }
 
     const handelOnClicRegister = ()=>{
+
         const registers = {
           firstName,
           lastName,
           age,
-          role:"6668aa851da32c9484a699a6",
-          favorite:[],
+          role:"66703c5b6ad6eec8649bda5b",
           email,
           password,
         }
@@ -47,6 +49,7 @@ const Login = ()=>{
     .then((result)=>{
         console.log(result);
         setMessage(result.data.message)
+        navigate("/Dashboard")
     })
     .catch((error)=>{
         console.log(error);
@@ -55,8 +58,105 @@ const Login = ()=>{
     }
     return(
         <>
+        <Container>
+      <Row className="justify-content-md-center">
+        <Col md="6">
+          <h2>تسجيل الدخول</h2>
+          <Form>
+            <Form.Group controlId="formBasicEmail">
+              <Form.Label>البريد الإلكتروني</Form.Label>
+              <Form.Control
+                type="email"
+                placeholder="أدخل البريد الإلكتروني"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+              />
+            </Form.Group>
 
-        <p>Login</p>
+            <Form.Group controlId="formBasicPassword">
+              <Form.Label>كلمة المرور</Form.Label>
+              <Form.Control
+                type="password"
+                placeholder="أدخل كلمة المرور"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+              />
+            </Form.Group>
+
+            {error && <Alert variant="danger">{error}</Alert>}
+
+            <Button variant="primary" onClick={handelLoginOnClick}>
+              تسجيل الدخول
+            </Button>
+          </Form>
+        </Col>
+      </Row>
+
+      <Row className="justify-content-md-center mt-5">
+        <Col md="6">
+          <h2>التسجيل</h2>
+          <Form>
+            <Form.Group controlId="formFirstName">
+              <Form.Label>الاسم الأول</Form.Label>
+              <Form.Control
+                type="text"
+                placeholder="أدخل الاسم الأول"
+                value={firstName}
+                onChange={(e) => setFirstName(e.target.value)}
+              />
+            </Form.Group>
+
+            <Form.Group controlId="formLastName">
+              <Form.Label>الاسم الأخير</Form.Label>
+              <Form.Control
+                type="text"
+                placeholder="أدخل الاسم الأخير"
+                value={lastName}
+                onChange={(e) => setLastName(e.target.value)}
+              />
+            </Form.Group>
+
+            <Form.Group controlId="formAge">
+              <Form.Label>العمر</Form.Label>
+              <Form.Control
+                type="number"
+                placeholder="أدخل العمر"
+                value={age}
+                onChange={(e) => setAge(e.target.value)}
+              />
+            </Form.Group>
+
+            <Form.Group controlId="formEmail">
+              <Form.Label>البريد الإلكتروني</Form.Label>
+              <Form.Control
+                type="email"
+                placeholder="أدخل البريد الإلكتروني"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+              />
+            </Form.Group>
+
+            <Form.Group controlId="formPassword">
+              <Form.Label>كلمة المرور</Form.Label>
+              <Form.Control
+                type="password"
+                placeholder="أدخل كلمة المرور"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+              />
+            </Form.Group>
+
+            {message && <Alert variant="info">{message}</Alert>}
+
+            <Button variant="success" onClick={handelOnClicRegister}>
+              التسجيل
+            </Button>
+          </Form>
+        </Col>
+      </Row>
+    </Container>
+
+        {/* <p>Login</p>
 
         <input type="email" placeholder="Email" onChange={(e)=>{
             setEmail(e.target.value)
@@ -69,8 +169,8 @@ const Login = ()=>{
         <button onClick={handelLoginOnClick}>Login</button>
         {error&& <p>{error}</p>}
         
-        <br/>
-
+        <br/> */}
+{/* 
         <p>Register</p>
         <input type="text" placeholder="First Name" onChange={(e)=>{
             setFirstName(e.target.value)
@@ -89,7 +189,7 @@ const Login = ()=>{
         }}/>
         <br></br>
         <button onClick={handelOnClicRegister}>Register</button>
-        {message && <p>{message}</p>}
+        {message && <p>{message}</p>} */}
 
         </>
     )

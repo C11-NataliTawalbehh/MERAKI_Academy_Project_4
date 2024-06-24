@@ -7,7 +7,6 @@ const userSchema = new mongoose.Schema({
     email:{type:String},
     password:{type:String},
     role:{type: mongoose.Schema.Types.ObjectId, ref: "Role" },
-    favorite:[{type: mongoose.Schema.Types.ObjectId, ref: "Product"}]
 })
 
 module.exports = mongoose.model("User" , userSchema);

@@ -1,12 +1,15 @@
 const checkoutModel = require("../models/checkoutSchema");
 
 const createCheckout = (req ,res)=>{
-    const {provid ,paymentIsCash} = req.body;
-    const user = req.token.userid
+    const {provid ,paymentIsCash ,fullName,phoneNumber,country,city,address} = req.body;
     const newCheckout = new checkoutModel({
         provid,
         paymentIsCash,
-        user,
+        fullName,
+        phoneNumber,
+        country,
+        city,
+        address
     })
 
     newCheckout
@@ -27,4 +30,20 @@ const createCheckout = (req ,res)=>{
     })
 }
 
-module.exports ={createCheckout}
+
+const getAllOrderCheckout = (req,res) => {
+    checkoutModel
+    .find({})
+    .populate({path: "FavoriteCart", select: "product -_id"})
+    .exec()
+    .then((result)=>{
+        res.status(201);
+        res.json(result);
+    })
+    .catch((err)=>{
+        res.status(500);
+        res.json(err.message)
+    });
+};
+
+module.exports ={createCheckout ,getAllOrderCheckout}

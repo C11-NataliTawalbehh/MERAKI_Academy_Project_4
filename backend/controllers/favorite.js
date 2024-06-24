@@ -1,73 +1,81 @@
-const userModel = require("../models/userSchema");
+const favoriteModel = require('../models/favoriteSchema');
+const userModel = require('../models/userSchema');
+const productModel = require("../models/productSchema")
 
-const addFavorite = (req,res)=>{
-    const {id} = req.body;
-    const user = req.token.userid;
-    console.log(user);
-    if(!user || !favorite){
-      return res.status(400).json({
-        success:false,
-        message:"user id and favorite product id are required"
-      })
+// Add a product to user's favorites
+const addToFavorites = async (req, res) => {
+  try {
+    const { productId } = req.body;
+    const user = await userModel.findById(req.token.userid);
+    
+    if (!user) {
+      return res.status(404).json({ msg: 'User not found' });
     }
-    userModel 
-    .findById(user ,{$push:{favorite:id}} ,{new:true})
-    .save()
-    .then((result)=>{
-       if(!result){
-        return res.status(404).json({
-            success:false,
-            message:"user not found"
-        })
-       }
-    })
-    .then(result =>{
-        res.status(201).json({
-            success:true,
-            message:"favorite added successfully",
-            result:result
-        })
-    })
-    .catch(error =>{
-        res.status(500).json({
-            success:false,
-            message:"server Error",
-            error:error.message
-        })
-    })
-   
+
+    const product = await productModel.findById(productId);
+
+    if (!product) {
+      return res.status(404).json({ msg: 'Product not found' });
+    }
+
+    let favorite = await favoriteModel.findOne({ user: req.token.userid });
+
+    if (!favorite) {
+      favorite = new favoriteModel({ user: req.token.userid, products: [] });
+    }
+
+    if (favorite.products.includes(productId)) {
+      return res.status(400).json({ msg: 'Product already in favorites' });
+    }
+
+    favorite.products.push(productId);
+    await favorite.save();
+
+    res.json(favorite);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send('Server Error');
   }
+};
 
-  // userModel.findById(userid, {$push: {favorites: favorite}}, {new: true})
-  // .then((result) => {
-  //   console.log(result);
-  // }).catch(err => {
-  //   console.log(err.message);
-  // })
+// Remove a product from user's favorites
+ const removeFromFavorites = async (req, res) => {
+  try {
+    const { productId } = req.params;
+    const favorite = await favoriteModel.findOne({ user: req.token.userid });
 
-const deleteFavoriteById = (req, res) => {
-    const id = req.params.id;
-    userModel
-      .findByIdAndDelete(id)
-      .then((result) => {
-        if (!result) {
-          return res.status(404).json({
-            success: false,
-            message: `The favorite with id => ${id} not found`,
-          });
-        }
-        res.status(200).json({
-          success: true,
-          message: `favorite deleted`,
-        });
-      })
-      .catch((err) => {
-        res.status(500).json({
-          success: false,
-          message: `Server Error`,
-          err: err.message,
-        });
-      });
-  };
+    if (!favorite) {
+      return res.status(404).json({ msg: 'Favorites not found' });
+    }
 
-module.exports = {addFavorite , deleteFavoriteById}
+    if (!favorite.products.includes(productId)) {
+      return res.status(400).json({ msg: 'Product not in favorites' });
+    }
+
+    favorite.products = favorite.products.filter(p => p.toString() !== productId);
+    await favorite.save();
+
+    res.json(favorite);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send('Server Error');
+  }
+};
+
+// Get user's favorites
+const getFavorites = async (req, res) => {
+  try {
+    const favorite = await favoriteModel.findOne({ user: req.token.userid }).populate('products');
+
+    if (!favorite) {
+      return res.status(404).json({ msg: 'Favorites not found' });
+    }
+
+    res.json(favorite.products);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send('Server Error');
+  }
+};
+
+module.exports ={getFavorites,removeFromFavorites,addToFavorites}

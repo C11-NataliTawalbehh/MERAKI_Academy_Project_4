@@ -9,7 +9,7 @@ const authentication = (req,res,next)=>{
               });
         }
         const token = req.headers.authorization.split(" ").pop();
-        console.log(token);
+        // console.log(token);
         const secretKey = process.env.SECRET;
         jwt.verify(token,secretKey,(error , result)=>{
             if(error){

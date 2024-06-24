@@ -1,6 +1,6 @@
 const productModel = require("../models/productSchema")
 const createNewProduct = (req ,res) =>{
-    const {name , description ,price , image,quantity,comment,category} =req.body;
+    const {name , description ,price , image,quantity,comment,category,rating} =req.body;
     const user = req.token.userid;
     const newProduct = new productModel({
         name,
@@ -11,6 +11,8 @@ const createNewProduct = (req ,res) =>{
         comment,
         user,
         category,
+        rating
+        
     })
     
     newProduct
@@ -29,11 +31,10 @@ const createNewProduct = (req ,res) =>{
     })
 }
 
-
 const getAllProduct = (req, res) => {
     const user = req.token.userid;
     productModel
-      .find({user})
+      .find({})
       .populate("comment")
       .exec()
       .then((product) => {
@@ -75,6 +76,27 @@ const getAllProduct = (req, res) => {
       });
   })
   }
+const getProductById = (req,res)=>{
+   const {productId} = req.params;
+  //  console.log("from get ======================> ",productId);
+   const userid = req.token.userid;
+   productModel
+   .findById(productId)
+   .then((product)=>{
+    if(!product){
+      return res.status(400).json({message:"product not found"})
+    }
+    res.status(200).json({
+      success: true,
+          message: `All the product`,
+          userId: userid,
+          product: product
+    })
+   })
+   .catch((error)=>{
+    res.status(500).json(error)
+   })
+}
 const updateProductById = (req,res)=>{
     const id = req.params.id;
     const filter = req.body;
@@ -106,6 +128,33 @@ const updateProductById = (req,res)=>{
   });
 }  
 
+const updateRating = async(req,res) =>{
+  try{
+    const productId = req.params.productId;
+    const {rating} = req.body;
+    const product = await productModel .findByIdAndUpdate(
+      productId,{rating},{new:true}
+    )
+   if(!product){
+    return res.status(404).json({
+      success: false,
+      message: `The product with id => ${id} not found`,
+    });
+   }
+   res.status(200).json({
+    success: true,
+    message: `product deleted`,
+    product:product
+  });
+  }catch(error){
+    res.status(500).json({
+      success: false,
+      message: `Server Error`,
+      err: error.message,
+    });
+  }
+}
+
 
 const deleteProductById = (req, res) => {
     const id = req.params.id;
@@ -132,13 +181,19 @@ const deleteProductById = (req, res) => {
       });
   };
 
-// const searchProduct = async(req,res)=>{
-//   const {query} = req.query;
-//   try{
-//     const product =await productModel.find({name:{$regex:query , $options:"i"}});
-//     res.json(product)
-//   }catch(error){
-//     res.status(500).json({error:"server Error"})
-//   }
-// }  
-module.exports = {createNewProduct , getAllProduct ,updateProductById ,deleteProductById ,getProductByCategory };
+
+const searchProduct = async(req,res)=>{
+  const {name} = req.query;
+  const regex = new RegExp(name , "gi" )
+  try{
+    const product =await productModel.find({name:{$regex:regex}});
+    if(product.length){
+    return res.json(product)
+    }
+    throw Error
+  }catch(error){
+    res.status(500).json({error:"server Error"})
+  }
+}  
+module.exports = {createNewProduct , getAllProduct ,updateProductById ,deleteProductById ,getProductByCategory ,
+  searchProduct ,getProductById,updateRating};
