@@ -1,0 +1,31 @@
+.App {
+    font-family: Arial, sans-serif;
+    background-color: #f8f9fa; /* خلفية الصفحة */
+    padding: 20px; /* تباعد داخلي */
+  }
+  
+  nav {
+    background-color: #060606; /* خلفية Navbar */
+    padding: 10px 0; /* حشو الأعلى والأسفل */
+    display: flex;
+    justify-content: center;
+  }
+
+  nav a {
+    color: #ffffff; /* لون النص */
+    font-size: 20px; /* حجم الخط */
+    margin: 0 10px; /* هامش اليمين واليسار للروابط */
+    text-decoration: none; /* عدم تزيين الروابط */
+    display: flex;
+    align-items: center; /* محاذاة النص والأيقونة في وسط الرابط */
+    transition: color 0.3s ease; /* تحويل تدريجي للون عند التحويم */
+    width: 100px;
+  }
+  
+  nav a:hover {
+    color: #f6cce5; /* لون النص عند التحويم */
+  }
+  
+  .nav-icons {
+    margin-right: 10px; /* هامش من اليمين للأيقونات */
+  }

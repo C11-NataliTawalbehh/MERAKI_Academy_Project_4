@@ -1,13 +1,126 @@
+.product-card {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 20px;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  width: 100%;
+}
+
+.product-content {
+  display: flex;
+  align-items: flex-start;
+  width: 100%;
+}
+
+.product-image {
+  width: 40%;
+  padding-right: 20px; /* تباعد عن النص */
+}
+
+.product-image img {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
+
+.product-details {
+  flex: 1;
+}
+
+.card-body {
+  padding: 0;
+}
+
+.card-title {
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+  
+}
+
+.card-text {
+  margin-bottom: 10px;
+  
+}
+
+.quantity-control {
+  margin-bottom: 10px;
+}
+
+.quantity {
+  margin: 0 10px;
+}
 .rating {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.star-label {
+  cursor: pointer;
+  margin-right: 5px;
+}
+
+.card-footer {
+  margin-top: 20px;
+}
+
+
+
+.btn {
+  margin-right: 5px;
+}
+
+.comment-item {
+  border: 1px solid #ccc;
+  padding: 10px;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+  margin-bottom: 10px;
+}
+
+.comment-item p {
+  margin-bottom: 5px;
   
-  .rating input {
-    display: none;
-  }
-  
-  .rating label {
-    cursor: pointer;
-  }
+}
+
+.comment-item button {
+  margin-left: 10px;
+  padding: 5px 10px;
+  background-color: #dc3545;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.comment-textarea {
+  width: calc(100% - 110px);
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ced4da;
+  border-radius: 5px;
+  resize: none;
+}
+
+.comment-textarea:focus {
+  outline: none;
+  border-color: #6c757d;
+  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+}
+
+.comment-btn{
+  background-color: #6c757d;
+  color: white;
+  border: 1px solid #ccc;
+  padding: 8px 16px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.comment-btn:hover{
+  background-color: #565353;
+}

@@ -1,16 +1,7 @@
 const favoriteCartModel = require("../models/favoriteCartSchema");
 const productModel = require("../models/productSchema")
 const addCart = async (req, res) => {
-  // const {total , quantity} = req.body;
-  //    const user = req.token.userid;
-  //    console.log( user);
-  //    const {productId} = req.params;
-  //    const newCart = new favoriteCartModel({
-  //     product:productId,
-  //     total,
-  //     user,
-  //     quantity,
-  //    })
+
   
      
     // ------------------------------------------- 
@@ -51,35 +42,7 @@ console.log("cart==========>",cart);
       err: error.message,
     });
   }
-    // favoriteCartModel.findByIdAndUpdate({user},{$push:{product:productId}},{new:true})
-    // // favoriteCartModel.findOne({user})
-    // .then((result)=>{
-    //   console.log("from add cart ",result);
-    // })
-    // .catch((err)=>{
-    //     res.status(500).json({
-    //       success: false,
-    //       message: `Server Error`,
-    //       err: err.message,
-    //     });
-    //    })
-    //-------------------------------------
-    
-
-  // try {
-  //   const { total, product } = req.body;
-  //   const user = req.token.userid;
-  //   const newFavoriteCart = new favoriteCartModel({
-  //       total,
-  //       product,
-  //       user,
-  //   });
-
-  //   await newFavoriteCart.save();
-  //   res.status(201).json(newFavoriteCart);
-  // } catch (error) {
-  //   res.status(400).json({ error: error.message });
-  // }
+   
 }
 
   const getAllCart = (req,res)=>{
@@ -129,31 +92,61 @@ console.log("cart==========>",cart);
     });
   }
 
-const deleteCartById = (req, res) => {
-    const cartId = req.params.id;
-    favoriteCartModel
-      .findByIdAndDelete(cartId)
-      .then((result) => {
-        if (!result) {
-          return res.status(404).json({
-            success: false,
-            message: `The favorite with id => ${id} not found`,
-          });
-        }
-        res.status(200).json({
-          success: true,
-          message: `favorite deleted`,
-        });
-      })
-      .catch((err) => {
-        res.status(500).json({
+  const deleteProductFromCart = async (req, res) => {
+    const { productId } = req.params; // معرف المنتج الذي سيتم حذفه
+    const user = req.token.userid; // معرف المستخدم الذي يمتلك السلة
+  
+    try {
+      // العثور على سلة المستخدم
+      let cart = await favoriteCartModel.findOne({ user });
+  
+      if (!cart) {
+        return res.status(404).json({
           success: false,
-          message: `Server Error`,
-          err: err.message,
+          message: `Cart not found for user ${user}`,
         });
+      }
+  
+      // التحقق من وجود المنتج في السلة
+      const productIndex = cart.product.findIndex(p => p.id.toString() === productId);
+  
+      if (productIndex === -1) {
+        return res.status(404).json({
+          success: false,
+          message: `Product with id ${productId} not found in cart`,
+        });
+      }
+  
+      // حذف المنتج من السلة
+      cart.product.splice(productIndex, 1);
+  
+      // تحديث إجمالي السلة بعد الحذف
+      cart.total = 0
+      for(const item of cart.product){
+        const product = await productModel.findById(item.id);
+        if(product){
+          cart.total += item.quantity * product.price
+        }
+      }
+      
+  
+      // حفظ التغييرات
+      await cart.save();
+  
+      res.status(200).json({
+        success: true,
+        message: "Product removed from cart",
+        cart: cart,
       });
+    } catch (error) {
+      res.status(500).json({
+        success: false,
+        message: "Server Error",
+        err: error.message,
+      });
+    }
   };
-
+  
   const updateCartById = (req ,res)=>{
     const cartId = req.params.id;
     const {total} = req.body;
@@ -176,7 +169,7 @@ const deleteCartById = (req, res) => {
 
   }
 
-module.exports = {addCart , deleteCartById ,getAllCart , updateCartById ,getCartById}
+module.exports = {addCart , deleteProductFromCart ,getAllCart , updateCartById ,getCartById}
 
 
 

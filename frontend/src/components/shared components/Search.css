@@ -1,0 +1,51 @@
+.search-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #f0f0f0;
+  padding: 10px;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Styling for search input */
+.search-input {
+  border: none; /* إزالة حدود الحقل النصي */
+  outline: none;
+  padding: 8px;
+  font-size: 16px;
+  flex: 1;
+  border-bottom: 10px solid #ccc; /* خط واحد أسفل الحقل */
+  border-radius: 0; /* إزالة تدوير الحواف الزاوية */
+  transition: border-bottom-color 0.3s ease; /* تأثير تحويل اللون عند التحويل */
+}
+
+/* Styling for search input focus */
+.search-input:focus {
+  border-bottom-color: pink; /* تغيير لون الخط السفلي عند التركيز */
+}
+.search-button {
+  background-color: #060606;
+  color: #ffffff;
+  border: none;
+  outline: none;
+  padding: 8px 12px;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  width: 50px;
+}
+
+/* Hover effect for search button */
+.search-button:hover {
+  background-color: #424446;
+}
+
+/* Styling for search icon */
+.search-icon {
+  font-size: 20px;
+  margin-right: 8px;
+  color: pink;
+}
+
+

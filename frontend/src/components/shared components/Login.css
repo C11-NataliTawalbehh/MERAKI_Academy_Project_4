@@ -1,0 +1,88 @@
+login-register-container {
+    margin-top: 400px;
+    direction: rtl;
+    font-family: 'Cairo', sans-serif;
+  }
+  
+  /* Centering Rows */
+  .login-register-container .row.justify-content-md-center {
+    display: flex;
+    justify-content: center;
+  }
+  
+  /* Column Styling */
+  .login-register-container .col-md-6 {
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 30px;
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s;
+  }
+  
+  .login-register-container .col-md-6:hover {
+    transform: scale(1.02);
+  }
+
+/* Form Heading Styling */
+.login-register-container h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #333;
+  }
+  
+  /* Input Field Styling */
+  .login-register-container .form-control {
+    margin-bottom: 15px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    padding: 10px;
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Label Styling */
+  .login-register-container .form-label {
+    font-weight: bold;
+    color: #555;
+  }
+  
+  /* Button Styling */
+  .login-register-container button {
+    width: 100%;
+    margin-top: 10px;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #007bff;
+    color: white;
+    font-size: 16px;
+    transition: background-color 0.3s;
+  }
+  
+  .login-register-container button:hover {
+    background-color: #0056b3;
+  }
+  /* Success Button Styling */
+.login-register-container button.btn-success {
+    background-color: #28a745;
+  }
+  
+  .login-register-container button.btn-success:hover {
+    background-color: #218838;
+  }
+  
+  /* Alert Styling */
+  .login-register-container .alert {
+    margin-top: 20px;
+    border-radius: 5px;
+  }
+  
+  /* Visibility Toggling */
+  #register-section,
+  #login-section {
+    display: none;
+  }
+  
+  .show {
+    display: block !important;
+  }

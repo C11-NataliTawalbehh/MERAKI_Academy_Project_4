@@ -3,7 +3,7 @@ import { useContext , useState } from "react";
 import { UserContext } from "../../App";
 import { Navigate ,useNavigate } from "react-router-dom";
 import { Container, Row, Col, Form, Button, Alert } from "react-bootstrap";
-
+import "./Login.css"
 const Login = ()=>{
     const navigate = useNavigate();
     const {setToken , setIsLoggedIn} = useContext(UserContext);
@@ -28,7 +28,8 @@ const Login = ()=>{
             setToken(token);
             localStorage.setItem("token",token)
             setIsLoggedIn(true)
-            navigate('/dashboard')
+            localStorage.setItem("isLoggedIn",true)
+            navigate('/')
         }catch(error){
             setError(error.response.data.message)
         }
@@ -49,7 +50,7 @@ const Login = ()=>{
     .then((result)=>{
         console.log(result);
         setMessage(result.data.message)
-        navigate("/Dashboard")
+         
     })
     .catch((error)=>{
         console.log(error);
@@ -58,26 +59,26 @@ const Login = ()=>{
     }
     return(
         <>
-        <Container>
+        <Container className="login-register-container">
       <Row className="justify-content-md-center">
         <Col md="6">
-          <h2>تسجيل الدخول</h2>
+          <h2>Login</h2>
           <Form>
             <Form.Group controlId="formBasicEmail">
-              <Form.Label>البريد الإلكتروني</Form.Label>
+              <Form.Label>Email</Form.Label>
               <Form.Control
                 type="email"
-                placeholder="أدخل البريد الإلكتروني"
+                placeholder="Enter your email "
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
               />
             </Form.Group>
 
             <Form.Group controlId="formBasicPassword">
-              <Form.Label>كلمة المرور</Form.Label>
+              <Form.Label>password</Form.Label>
               <Form.Control
                 type="password"
-                placeholder="أدخل كلمة المرور"
+                placeholder="Enter the password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
               />
@@ -86,7 +87,7 @@ const Login = ()=>{
             {error && <Alert variant="danger">{error}</Alert>}
 
             <Button variant="primary" onClick={handelLoginOnClick}>
-              تسجيل الدخول
+              Login
             </Button>
           </Form>
         </Col>
@@ -94,53 +95,53 @@ const Login = ()=>{
 
       <Row className="justify-content-md-center mt-5">
         <Col md="6">
-          <h2>التسجيل</h2>
+          <h2>Register</h2>
           <Form>
             <Form.Group controlId="formFirstName">
-              <Form.Label>الاسم الأول</Form.Label>
+              <Form.Label>first Name</Form.Label>
               <Form.Control
                 type="text"
-                placeholder="أدخل الاسم الأول"
+                placeholder="Enter first name"
                 value={firstName}
                 onChange={(e) => setFirstName(e.target.value)}
               />
             </Form.Group>
 
             <Form.Group controlId="formLastName">
-              <Form.Label>الاسم الأخير</Form.Label>
+              <Form.Label>Last Name</Form.Label>
               <Form.Control
                 type="text"
-                placeholder="أدخل الاسم الأخير"
+                placeholder="Enter last name"
                 value={lastName}
                 onChange={(e) => setLastName(e.target.value)}
               />
             </Form.Group>
 
             <Form.Group controlId="formAge">
-              <Form.Label>العمر</Form.Label>
+              <Form.Label>Age</Form.Label>
               <Form.Control
                 type="number"
-                placeholder="أدخل العمر"
+                placeholder="Enter the age"
                 value={age}
                 onChange={(e) => setAge(e.target.value)}
               />
             </Form.Group>
 
             <Form.Group controlId="formEmail">
-              <Form.Label>البريد الإلكتروني</Form.Label>
+              <Form.Label>Email</Form.Label>
               <Form.Control
                 type="email"
-                placeholder="أدخل البريد الإلكتروني"
+                placeholder="Enter your email "
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
               />
             </Form.Group>
 
             <Form.Group controlId="formPassword">
-              <Form.Label>كلمة المرور</Form.Label>
+              <Form.Label>password</Form.Label>
               <Form.Control
                 type="password"
-                placeholder="أدخل كلمة المرور"
+                placeholder="Enter the password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
               />
@@ -149,47 +150,13 @@ const Login = ()=>{
             {message && <Alert variant="info">{message}</Alert>}
 
             <Button variant="success" onClick={handelOnClicRegister}>
-              التسجيل
+              Register
             </Button>
           </Form>
         </Col>
       </Row>
     </Container>
 
-        {/* <p>Login</p>
-
-        <input type="email" placeholder="Email" onChange={(e)=>{
-            setEmail(e.target.value)
-        
-        }}/>
-        <input type="password" placeholder="Password" onChange={(e)=>{
-            setPassword(e.target.value)
-    
-        }}/>
-        <button onClick={handelLoginOnClick}>Login</button>
-        {error&& <p>{error}</p>}
-        
-        <br/> */}
-{/* 
-        <p>Register</p>
-        <input type="text" placeholder="First Name" onChange={(e)=>{
-            setFirstName(e.target.value)
-        }}/>
-        <input type="text" placeholder="Last Name" onChange={(e)=>{
-            setLastName(e.target.value)
-        }}/>
-        <input type="number" placeholder="Age" onChange={(e)=>{
-            setAge(e.target.value)
-        }}/>
-        <input type="email" placeholder="Email" onChange={(e)=>{
-            setEmail(e.target.value)
-        }}/>
-        <input type="password" placeholder="Password" onChange={(e)=>{
-            setPassword(e.target.value)
-        }}/>
-        <br></br>
-        <button onClick={handelOnClicRegister}>Register</button>
-        {message && <p>{message}</p>} */}
 
         </>
     )

@@ -1,0 +1,34 @@
+.favorite-item {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 16px;
+  margin-bottom: 20px;
+  transition: box-shadow 0.3s ease;
+}
+
+.favorite-item:hover {
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.favorite-item img {
+  width: 100%;
+  border-radius: 8px;
+  margin-bottom: 12px;
+}
+
+.favorite-item .details-link {
+  text-decoration: none;
+  color: #007bff;
+  font-size: 14px;
+}
+.favorite-item .details-link:hover {
+  text-decoration: underline;
+}
+.favorite-item .price-badge {
+  background-color: #28a745;
+  color: #fff;
+}
+
+.favorite-item .delete-button {
+  margin-top: 8px;
+}

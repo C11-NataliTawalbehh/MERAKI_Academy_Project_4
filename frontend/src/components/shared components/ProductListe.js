@@ -6,43 +6,22 @@ import { Link, useParams } from "react-router-dom";
 import { UserContext } from '../../App';
 import axios from 'axios';
 const ProductList = ({searchResult})=> {
-  // const {productId} = useParams();
-  // console.log(productId);
-  // const [searchResult , setSearchResult] = useState([])
-  // const [product , setProduct] = useState([])
-  // const [name , setName] = useState("")
-  // const {token} = useContext(UserContext)
-  // const getProductById =async ()=>{
-  //   try{
-  //    const response = await axios.get(`http://localhost:5000/product/byId/${productId}`, {
-  //         headers: {Authorization: `Bearer ${token}`},
-  //       })
-  //       console.log(response.data);
-  //       setProduct(response.data.product)
-  //   }catch(error){
-  //     console.log(error);
-  //   }
-  // }
-  // useEffect(()=>{
-  //  getProductById()
-  // },[])
+
  
   return (
   
     <Row>
-      {searchResult.map((product) => (
-        <Col key={product.id} sm="12" md="6" lg="4">
-          <Card className="mb-3">
-            <Card.Img variant="top" src={product.image} />
-            <Card.Body>
-              <Card.Title>{product.name}</Card.Title>
-              <Card.Text>
-                {product.price} 
-              </Card.Text>
-            </Card.Body>
-          </Card>
-        </Col>
-      ))}
+     <div>
+      {searchResult && searchResult.length > 0 ? (
+        <ul>
+          {searchResult.map((item) => (
+            <li key={item.id}>{item.name}</li>
+          ))}
+        </ul>
+      ) : (
+        <p>No products found.</p>
+      )}
+    </div>
     </Row>
   );
 }

@@ -13,18 +13,25 @@ import Cart from './components/shared components/Cart';
 import { Container, Row, Col, ListGroup } from 'react-bootstrap';
 import ProductList from './components/shared components/ProductListe';
 import ProductDetails from './components/shared components/ProductDetails';
+import { FiUser, FiClipboard, FiLogOut ,FiAlignCenter } from 'react-icons/fi'; 
+import { FaShoppingCart } from "react-icons/fa";
+import { MdOutlineFavorite } from "react-icons/md";
+import { FaHome } from "react-icons/fa";
+
 // import Search from './components/shared components/Search';
 export const UserContext = createContext();
 const App = () => {
    
   const [token , setToken] = useState(localStorage.getItem('token')||"");
-  const [isLoggedIn , setIsLoggedIn] = useState(false);
+  const [isLoggedIn , setIsLoggedIn] = useState(localStorage.getItem('isLoggedIn')||false );
   const [searchResult , setSearchResult] = useState([])
   const [product , setProduct] = useState([])
   const category= ["candel","backage"];
   const handelLogin = ()=>{
     setIsLoggedIn(true)
+    localStorage.getItem('isLoggedIn',true)
   }
+
 
   const handelLogout = ()=>{
     setToken("")
@@ -33,12 +40,12 @@ const App = () => {
   
   return (
    <div className="App">
-    <UserContext.Provider value={{token,setToken,isLoggedIn,setIsLoggedIn , category , handelLogout ,setSearchResult ,product}}>
+    <UserContext.Provider value={{token,setToken,isLoggedIn,setIsLoggedIn , category , handelLogout ,setSearchResult ,product,handelLogin}}>
      
     <div className="ticker-container">
       <div className="ticker">
         <div className="ticker__content">
-          <span>أهلاً بكم في كونكريت نتاليا - مرحباً بكم في موقعنا الجديد - اكتشف عروضنا الحصرية الآن</span>
+          <span>Welcome to Concrete Natalia - Welcome to our new website - Discover our products that were made for you - Handcrafted - For any inquiries, contact us on the Concrete Natalia page.</span>
         </div>
       </div>
     </div>
@@ -46,73 +53,75 @@ const App = () => {
       <br/>
       <br/>
       <br/>
-      <br/>
-      <br/>
+    
     
       <div className="name-container">
-      <Container>
+    
+      <img src='/assets\Natalia3.gif' alt="Logo" className="logo-img" />
+      <h1 className="name-text">Concrete Natalia</h1>
+    
+        
+      {/* <Container>
         <Row className="justify-content-center">
-          <Col xs={12} className="text-center">
-            <h1 className="name-text">Concrete Natalia</h1>
+          <Col xs={12} md={6} className="text-center">
+            <img src='/assets\Natalia2.gif' alt='Logo' className='logo-img'/>
+          </Col>
+          <Col xs={12} md={6} className="text-center">
+          <h1 className="name-text">Concrete Natalia</h1>
           </Col>
         </Row>
-      </Container>
+      </Container> */}
     </div>
 
+    <Container>
+          <Navbar bg="light" expand="lg">
+            <Navbar.Brand as={Link} to="/">منتجات</Navbar.Brand>
+            {isLoggedIn ? (
+              <Nav className="ml-auto">
+                <Nav.Link as={Link} to="/favorites">المفضلة <MdOutlineFavorite /></Nav.Link>
+                <Nav.Link as={Link} to="/cart">السلة <FaShoppingCart /></Nav.Link>
+                <Nav.Link onClick={handelLogout}>تسجيل الخروج <FiLogOut /></Nav.Link>
+              </Nav>
+            ) : (
+              <Nav className="ml-auto">
+                <Nav.Link as={Link} to="/login">تسجيل الدخول <FiUser /></Nav.Link>
+              </Nav>
+            )}
+          </Navbar>
 
-    <Container className='containers'>
-  <Row className="justify-content-md-center">
-    <Col md="8">
-      <Search setSearchResult={setSearchResult} />
-    </Col>
-  </Row>
+          <Row className="justify-content-md-center">
+            <Col md="8">
+              <Search />
+            </Col>
+          </Row>
 
-  <Row className="justify-content-md-center mt-3">
-    <Navbar/>
-    {/* <Col md="12">
-      <Navbar className="justify-content-center">
-        <Navbar.Link to="/new-product">منتج جديد</Navbar.Link>
-        <Navbar.Link to="/register">تسجيل جديد</Navbar.Link>
-        <Navbar.Link to="/login">تسجيل الدخول</Navbar.Link>
+          <Routes>
+            <Route path="/" element={<Dashboard />} />
+            <Route path='/login' element={<Login handleLogin={handelLogin} />} />
+            <Route path='/add-product' element={isLoggedIn ? <AddProduct /> : <Navigate to="/login" />} />
+            <Route path='/product/:productId' element={<ProductDetails />} />
+            <Route path='/cart/:productId' element={isLoggedIn ? <Cart /> : <Navigate to="/login" />} />
+            <Route path='/favorites' element={<Favorite/>} />
+            {/* <Route path='/favorites' element={isLoggedIn ? <Favorite /> : <Navigate to="/login" />} /> */}
+            <Route path='/Checkout' element={<AddCheckout/>} />
+          </Routes>
+        </Container>
+    
+    
+    {/* <Container>
+      <Navbar bg="light" expand="lg">
+        <Navbar.Brand href="/">منتجات</Navbar.Brand>
       </Navbar>
-    </Col> */}
-  </Row>
 
-  <Row className="justify-content-md-center">
-    <Col md="12">
-      <ProductList searchResult={searchResult} />
-    </Col>
-  </Row>
-
-</Container>
+      <Row className="justify-content-md-center">
+        <Col md="8">
+          <Search />
+        </Col>
+      </Row>
+    
+      
 
     
-    {/* <Navbar bg="light" expand="lg">
-        <Container>
-          <Navbar.Brand href="/">منتجات</Navbar.Brand>
-          <Navbar.Toggle aria-controls="basic-navbar-nav" />
-          <Navbar.Collapse id="basic-navbar-nav">
-            <Nav className="me-auto">
-              <Nav.Link href="/new-product">منتج جديد</Nav.Link>
-              <Nav.Link href="/register">تسجيل جديد</Nav.Link>
-              <Nav.Link href="/login">تسجيل الدخول</Nav.Link>
-            </Nav>
-          </Navbar.Collapse>
-        </Container>
-      </Navbar> */}
-
-      <Container>
-        {/* <Row className="justify-content-md-center">
-          <Col md="8">
-            <Search setSearchResult={setSearchResult} />
-          </Col>
-        </Row> */}
-
-        {/* <Row className="justify-content-md-center">
-          <Col md="12">
-            <ProductList product={searchResult} />
-          </Col>
-        </Row> */}
     
        <Routes>
         <Route path='/login' element={<Login/>}/>
@@ -120,15 +129,56 @@ const App = () => {
         <Route path='/add Product' element={<AddProduct/>}/>
         <Route path='/product/:productId' element={<ProductDetails/>}/> 
         <Route path='/cart/:productId' element={<Cart/>} />
-        <Route path='/admin/Checkout' element={<AddCheckout />} />
+        <Route path='/Checkout' element={<AddCheckout />} />
+        <Route path='/favorites' element={<Favorite/>} />
         </Routes>
-        </Container>
+        </Container> */}
     </UserContext.Provider>
     </div>
   )
 }
 
 export default App
+
+
+
+{/* <Container className='containers'>
+  <Row className="justify-content-md-center search-container">
+    <Col md="8">
+      <Search setSearchResult={setSearchResult} />
+    </Col>
+  </Row>
+{/*  */}
+  {/* <Row className="justify-content-md-center mt-3 navbar-links">  */}
+{/*     
+   <Col md="12"> */}
+        {/* <Navbar/> */}
+          {/* <Navbar.Link to={"/login"}><FiUser /> </Navbar.Link>
+        
+        
+          <Navbar.Link to={"/add product"}><FiAlignCenter /> </Navbar.Link>
+        
+        
+          <Navbar.Link to={"/admin/Checkout"}><FiClipboard /> </Navbar.Link>
+        
+        
+          <Navbar.Link to={"/dashboard"}><FaHome /> </Navbar.Link>
+        
+        
+          <Navbar.Link to={"/cart/:id"}><FaShoppingCart /> </Navbar.Link>
+
+          <Navbar.Link to={"/favorites"}><MdOutlineFavorite /></Navbar.Link>
+      </Navbar> */}
+    {/* </Col>  */}
+  {/* </Row> */}
+
+  {/* <Row className="justify-content-md-center">
+    <Col md="12">
+      <ProductList searchResult={searchResult} />
+    </Col>
+  </Row> */}
+
+{/* </Container> */}
 
 
 

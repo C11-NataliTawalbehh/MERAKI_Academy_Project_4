@@ -21,22 +21,26 @@ const addToFavorites = async (req, res) => {
     let favorite = await favoriteModel.findOne({ user: req.token.userid });
 
     if (!favorite) {
-      favorite = new favoriteModel({ user: req.token.userid, products: [] });
+      favorite = new favoriteModel({ user: req.token.userid, product: [] });
     }
 
-    if (favorite.products.includes(productId)) {
+    if (favorite.product.includes(productId)) {
       return res.status(400).json({ msg: 'Product already in favorites' });
     }
 
-    favorite.products.push(productId);
-    await favorite.save();
+    await favoriteModel.updateOne(
+      { user: req.token.userid },
+      { $push: { product: productId } },
+      { new: true }
+    );
 
+    favorite = await favoriteModel.findOne({ user: req.token.userid });
     res.json(favorite);
   } catch (err) {
     console.error(err.message);
     res.status(500).send('Server Error');
   }
-};
+  };
 
 // Remove a product from user's favorites
  const removeFromFavorites = async (req, res) => {
@@ -48,11 +52,11 @@ const addToFavorites = async (req, res) => {
       return res.status(404).json({ msg: 'Favorites not found' });
     }
 
-    if (!favorite.products.includes(productId)) {
+    if (!favorite.product.includes(productId)) {
       return res.status(400).json({ msg: 'Product not in favorites' });
     }
 
-    favorite.products = favorite.products.filter(p => p.toString() !== productId);
+    favorite.product = favorite.product.filter(p => p.toString() !== productId);
     await favorite.save();
 
     res.json(favorite);
@@ -65,13 +69,13 @@ const addToFavorites = async (req, res) => {
 // Get user's favorites
 const getFavorites = async (req, res) => {
   try {
-    const favorite = await favoriteModel.findOne({ user: req.token.userid }).populate('products');
+    const favorite = await favoriteModel.findOne({ user: req.token.userid }).populate('product');
 
     if (!favorite) {
       return res.status(404).json({ msg: 'Favorites not found' });
     }
 
-    res.json(favorite.products);
+    res.json(favorite.product);
   } catch (err) {
     console.error(err.message);
     res.status(500).send('Server Error');
@@ -79,3 +83,4 @@ const getFavorites = async (req, res) => {
 };
 
 module.exports ={getFavorites,removeFromFavorites,addToFavorites}
+
