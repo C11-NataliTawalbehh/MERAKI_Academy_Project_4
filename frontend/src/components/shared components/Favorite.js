@@ -4,6 +4,9 @@ import { UserContext } from "../../App";
 import { Container, Row, Col, Card, Badge, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import ProductDetails from "./ProductDetails";
+import { FaInstagramSquare } from "react-icons/fa";
+import { FaFacebookSquare } from "react-icons/fa";
+
 
 import "./Favorite.css";
 
@@ -65,6 +68,18 @@ const Favorite = () => {
           </Col>
         ))}
       </Row>
+
+      <div className="footer">
+          <p className="footer-text">STAY ON TOP OF THE LATEST TRENDS.
+            <br />
+            Follow us on Instagram and Facebook.</p>
+          <a href="https://www.instagram.com/concretenatalia?igsh=MWhnejcxZnp4bDU3Ng==" rel="noopener noreferrer">
+            <FaInstagramSquare className="icon" />
+          </a>
+          <a href="https://www.facebook.com/profile.php?id=61554426860072&mibextid=ZbWKwL" rel="noopener noreferrer">
+            <FaFacebookSquare className="icon" />
+          </a>
+        </div>
   
     </Container>
   );

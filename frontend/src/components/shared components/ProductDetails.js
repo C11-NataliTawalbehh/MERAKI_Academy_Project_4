@@ -68,20 +68,11 @@ const ProductDetails = () => {
          Authorization:`Bearer ${token}`
          }})
          console.log(response);
-          // setProduct(response.data)
-          // setComment("")
           if(response.data.success){
             setProduct((prev)=>({
               ...prev , comment:[...prev.comment,response.data.comment]
             }))
             setComment("")
-            // const newData = product.map((elem ,i)=>{
-            //   if(elem._id === id){
-            //     elem.comment.push(response.data.comment)
-            //   }
-            //   return elem
-            // })
-            // setProduct(newData);
           }else throw Error
         }  
       catch(error){
@@ -101,14 +92,6 @@ const handelDeleteComment =async (productId,commentId)=>{
           )
         }))
       }
-      //   const newDate = product.map((elem)=>{
-      //     if(elem._id === productId){
-      //       elem.comment=elem.comment.filter(comment => comment._id !== commentId)
-      //     }
-      //     return elem;
-      //   })
-      //   setProduct(newDate)
-      // }
    }catch(error){
     console.log(error);
    }
@@ -155,11 +138,11 @@ const handelDeleteComment =async (productId,commentId)=>{
       <h3 className="card-title">{product.name}</h3>
       <br/>
       <p className="card-text">{product.description}</p>
-      <p className="card-text">{product.price} jd</p>
+      <p className="card-text">{product.price * quantity} jd</p>
       <div className="my-3">
-        <button className="btn btn-outline-secondary" onAuxClick={handleIncreaseQuantity}>-</button>
+        <button className="btn btn-outline-secondary" onClick={handleDecreaseQuantity}>-</button>
         <span className="mx-2">{quantity}</span>
-        <button className="btn btn-outline-secondary" onClick={handleDecreaseQuantity}>+</button>
+        <button className="btn btn-outline-secondary" onClick={handleIncreaseQuantity}>+</button>
       </div>
       <div className="rating">
       <div className="rating">

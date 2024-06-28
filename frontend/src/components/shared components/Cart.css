@@ -52,7 +52,7 @@
     color: #fff;
     border: none;
     padding: 8px 16px;
-    border-radius: 5px;
+    border-radius: 70px;
     cursor: pointer;
   }
   
@@ -73,3 +73,33 @@
     font-size: 1.2rem;
     color: #999;
   }
+
+  .total {
+    font-size: 20px;
+    margin-top: 20px;
+    color: black;
+  }
+/*   
+  .totalPrices {
+    font-weight: bold;
+    color: #007bff;
+  } */
+  
+  .checkout {
+    display: block;
+    margin-top: 10px;
+    text-decoration: none;
+    color: #007bff;
+    font-weight: bold;
+    font-size: 20px;
+  }
+  
+  .checkout:hover {
+    text-decoration: underline;
+  }
+
+  .delete{
+    border-radius:20%;
+    height: 37px;
+  }
+

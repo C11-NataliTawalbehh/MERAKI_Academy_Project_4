@@ -1,18 +1,22 @@
-.text-center {
+.container {
+    margin-top: 50px;
+  }
+  
+  .add-product-card {
+    border: 1px solid #ccc;
+    padding: 20px;
+    border-radius: 5px;
+  }
+  
+  .add-product-title {
     text-align: center;
-}
-
-.my-4 {
-    margin-top: 4rem;
-    margin-bottom: 4rem;
-}
-
-.form-label {
+    margin-bottom: 20px;
+  }
+  
+  .form-label {
     font-weight: bold;
-}
-
-/* تخصيص ألوان الأزرار */
-.btn-primary {
-    background-color: #007bff;
-    border-color: #007bff;
-}
+  }
+  
+  .btn-add-product {
+    margin-top: 20px;
+  }

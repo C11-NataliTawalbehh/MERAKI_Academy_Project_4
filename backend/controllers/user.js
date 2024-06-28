@@ -60,7 +60,7 @@ const login = (req, res) => {
     const { password } = req.body;
     userModele
         .findOne({ email })
-        .populate("role", "-_id -__v")
+        .populate("role", "_id -__v")
         .then(async (result) => {
             if (!result) {
                 res.status(403).json({
@@ -94,7 +94,8 @@ const login = (req, res) => {
                 res.status(200).json({
                     success: true,
                     massage: "Valid login credentials",
-                    token: token
+                    token: token,
+                    role:result.role._id
                 })
             } catch (error) {
                 console.log(error);

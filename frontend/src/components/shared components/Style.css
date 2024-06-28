@@ -70,7 +70,7 @@ body {
 
 .product-details-link {
   text-decoration: none;
-  color: #5b6065;
+  color: rgb(240, 70, 98);
   display: block;
   margin: 10px 0;
 }
@@ -84,8 +84,10 @@ body {
 }
 
 .product-title {
-  font-size: 1.2rem;
+  font-size:25px;
   margin-bottom: 10px;
+  font: optional;
+  color: #060606;
 }
 
 .badge-primary {
@@ -142,27 +144,35 @@ button:hover {
 .left-corner,
 .right-corner {
     position: fixed; /* تثبيت النص على الحواف */
-    top: 0; /* من الأعلى */
+   /* من الأعلى */
+    bottom: 0;
     width: 100px; /* عرض الحاوية */
-    height: 200vh; /* ارتفاع الحاوية بنسبة للعرض العمودي للصفحة */
+    /* height: 200vh;  */
     display: flex; /* عرض مروني */
+    flex-direction: column;
     align-items: center; /* توسيط رأسي للنص */
-    justify-content: center; /* توسيط أفقي للنص */
+    justify-content: space-between; /* توسيط أفقي للنص */
     font-size: 20px; /* حجم الخط */
     font-weight: bold; /* سمك الخط */
-    color: #e69acf; /* لون النص */
+    color: #5b6065; /* لون النص */
     text-transform: uppercase; /* تحويل النص إلى أحرف كبيرة */
+   
+}
+.name-text{
+margin-top: 90px;
+font-size: 35px;
+color: #5b6065;
 }
 
 /* تصميم حاوية النص على اليسار */
 .left-corner {
-    left: 50px; /* من اليسار */
-    padding-left: 15px;
+    left: 0px; /* من اليسار */
+    padding-left: 0px;
 }
 
 .right-corner {
-  right: 50px; /* من اليمين */
-  padding-right: 15px;
+  right: 0px; /* من اليمين */
+  padding-right: 0px;
 }
 
 /* تصميم نص العنوان */
@@ -170,15 +180,6 @@ button:hover {
 .right-corner h1 {
   writing-mode: vertical-rl; /* توجيه النص عموديًا من الأعلى إلى الأسفل */
   transform: rotate(180deg); /* دوران النص بزاوية 180 درجة للنص المعكوس */
-}
-
-/* تصميم النص */
-.left-corner h1 {
-  transform-origin: bottom left; /* نقطة الدوران من الأسفل اليسار */
-}
-
-.right-corner h1 {
-  transform-origin: bottom right; /* نقطة الدوران من الأسفل اليمين */
 }
 
 
@@ -208,7 +209,7 @@ button:hover {
     justify-content: center;
     align-items: center;
     padding: 20px;
-    background-color: #5b6065;
+    background-color: black;
     height: 300px;
     flex-direction: column;
   }

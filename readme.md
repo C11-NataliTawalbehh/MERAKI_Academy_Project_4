@@ -1,17 +1,17 @@
 <p align="center">
 <a href="https://www.meraki-academy.org" target="_blank" rel="noopener noreferrer">
- <img width="400px" height="100px" src="https://www.meraki-academy.org/assets/img/logov02.svg" alt="Project logo">
+ <img width="400px" height="100px" src="/assets\Natalia3.gif" alt="Project logo">
  </a>
 </p>
 
-<h3 align="center">Project Title
+<h3 align="center">Concrete Natalia
 </h3>
 
 ---
 
-<p align="center"> An awesome Project to describe README 
+<p align="center"> A page for selling household products
     <br> 
-<a href=''>Demo</a>
+<a href='http://localhost:3000/'>Demo</a>
     <br> 
 </p>
 
@@ -27,20 +27,21 @@
 
 ## 🧐 About <a name = "about"></a>
 
-Write about 1-2 paragraphs describing the purpose of your project.
+The project is a website for selling decorative products, and its goal is to sell products to customers and also for the user to enjoy when entering the site the different forms of products that were handcrafted for them.
 
-Ex. Are you looking for a quick and easy way to action, action, and action? The **(name of application)** is the greatest and most accurate application to do this for you. It helps you to **(list of activities)**. The **(name of application)** provides a simple design to ensure having the best user experience.
 
 ## 🏁 Getting Started <a name = "getting_started"></a>
-
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
+There are also many colors and shapes inside the store that will attract you.
 
 ### Prerequisites
 
-- Visual Studio Code follow this <a href=''>link</a> to install.
-- Git Bash follow this <a href=''>link</a> to install.
-- MongoDB follow this <a href=''>link</a> to install.
-- Node.js follow this <a href=''>link</a> to install.
+- Visual Studio Code follow this <a href='https://code.visualstudio.com/download'>link</a> to install.
+- Git Bash follow this <a href='https://git-scm.com/downloads'>link</a> to install.
+- MongoDB follow this <a href='https://www.mongodb.com/try/download/community'>link</a> to install.
+- Node.js follow this <a href='https://nodejs.org/en/download/'>link</a> to install.
+- NPM follow this <a href=' https://docs.npmjs.com/cli-documentation/'>link</a> to install.
+- ExpressJs follow this <a href='https://expressjs.com/'>link</a> to install.
+- Pootstrap follow this <a href='https://getbootstrap.com/'>link</a> to install.
 
 ### Installing:
 
@@ -55,14 +56,83 @@ git clone https://github.com/your_username_/Project-Name.git
 ```
 npm i
 ```
+3-Install packeges repeat this step in backend  folder
 
-3. Run server using git bash inside backend folder
+```
+npm i cors
+```
+4-Install packeges repeat this step in backend  folder
+
+```
+npm i express
+```
+5-Install packeges repeat this step in backend  folder
+
+```
+npm i jsonwebtoken
+```
+6-Install packeges repeat this step in backend  folder
+
+```
+npm i mongoose
+```
+7-Install packeges repeat this step in backend  folder
+
+```
+npm i dotenv
+```
+8-Install packeges repeat this step in backend  folder
+
+```
+npm i bcrypt
+```
+9-Install packeges repeat this step in frontend  folder
+
+```
+npm i axios
+```
+10-Install packeges repeat this step in frontend  folder
+
+```
+npm i react-router-dom
+```
+11-Install packeges repeat this step in frontend  folder
+
+```
+npm i react-dom
+```
+12-Install packeges repeat this step in frontend  folder
+
+```
+npm i react-scripts
+```
+13-Install packeges repeat this step in frontend  folder
+
+```
+npm i bootstrap
+```
+14-Install packeges repeat this step in frontend  folder
+
+```
+npm i react
+```
+15-Install packeges repeat this step in frontend  folder
+
+```
+npm i react-bootstrap
+```
+16-Install packeges repeat this step in frontend  folder
+
+```
+npm i cloudinary-react
+```
+17. Run server using git bash inside backend folder
 
 ```
 npm run dev
 ```
 
-4. Run application using git bash inside frontend folder
+18. Run application using git bash inside frontend folder
 
 ```
 npm run start
@@ -77,9 +147,19 @@ Use this space to show useful examples of how a project can be used. Additional 
 Ex.
 
 - You don't have to register to navigate our web app
+<img width=200px height=200px src="C:\Users\DELL\Desktop\Screenshot_141.png" alt="Diagram"></a>
 - You can click on the **Home** tab provided in the navigation bar to view the home section
+<img width=200px height=200px src="C:\Users\DELL\Desktop\Screenshot_13.png" alt="Diagram"></a>
 - You can click on the **Add to cart** button to add this product to your cart but you have to be one of our users, so you should create an account
-
+<img width=200px height=200px src="C:\Users\DELL\Desktop\Screenshot_191.png" alt="Diagram"></a>
+-the cart page when logging in to he website .
+<img width=200px height=200px src="C:\Users\DELL\Desktop\Screenshot_221.png" alt="Diagram"></a>
+-page for favorites
+<img width=200px height=200px src="C:\Users\DELL\Desktop\Screenshot_211.png" alt="Diagram"></a>
+-page for checkout
+<img width=200px height=200px src="C:\Users\DELL\Desktop\Screenshot_232.png" alt="Diagram"></a>
+-Footer
+<img width=200px height=200px src="C:\Users\DELL\Documents\Lightshot\Screenshot_20.png" alt="Diagram"></a>
 ## ⛏️ Built Using <a name = "built_using"></a>
 
 - [MongoDB](https://www.mongodb.com/) - Database
@@ -90,11 +170,11 @@ Ex.
 ## User Story <a name = "#user_story"></a>
 
 Your trello board link
-<a href=''>Trello</a>
+<a href='https://trello.com/b/MpCYgdEs/project-4'>Trello</a>
 
 ## Data Flow <a name = "#data_flow"></a>
 
-<img width=200px height=200px src="https://cacoo.com/assets/site/img/templates/screenshots/er-database-diagram.png" alt="Diagram"></a>
+<img width=200px height=200px src="C:\Users\DELL\Desktop\Screenshot_11.png" alt="Diagram"></a>
 
 ## ⚠️ Guided By <a name = "guided_by"></a>
 

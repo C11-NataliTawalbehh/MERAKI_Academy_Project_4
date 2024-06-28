@@ -11,9 +11,6 @@ const AddProduct = ()=>{
     const [price ,setPrice] = useState("");
     const [quantity ,setQuantity] = useState("");
     const [selectedCategory ,setSelectedCategory] = useState("")
-    const [categoryName , setCategoryName] = useState("")
-    const [comment , setComment] = useState("");
-    const [user ,setUser] = useState("");
     const [message , setMessage] = useState("");
     const [rating ,setRating] = useState(0)
     const {token}=useContext(UserContext)
@@ -44,46 +41,6 @@ const AddProduct = ()=>{
   })
  }
 
-//  const getAllCategory =async ()=>{
-//   try{
-//       const response = await axios.get("http://localhost:5000/categories/",{ headers: {
-//         Authorization: `Bearer ${token}`
-//     }})
-//     //  console.log(response.data.caegories);
-//      setCategories(response.data.categories)
-//   }catch(error){
-//     console.log(error)
-//   }
-// }
-
-// useEffect(()=>{
-//   getAllCategory()
-// },[])
-//================================================================= Upload Image =================================================================
-// const uploadImage = () => {
-//   if(image.length === 0){
-//     setMessage("please select image to upload")
-//     return;
-//   }
-//   const promises = image.map(images => {
-//       const data = new FormData();
-//       data.append("file", images);
-//       data.append("upload_preset", "mbz8udcz");
-//       data.append("cloud_name","do0c8tkck");
-
-//       return axios.post("https://api.cloudinary.com/v1_1/do0c8tkck/image/upload", data)
-//           .then(response => response.data.url)
-//           .catch(err => console.log(err));
-//   });
-
-//   Promise.all(promises)
-//       .then(results => {
-//         const validUrls = results.filter(url => url !== null)
-//           setUrl(validUrls);
-//           console.log(validUrls);
-//       })
-//       .catch(err => console.log(err));
-// }
 
  const uploadImage = () => {
     const data = new FormData()
@@ -100,93 +57,114 @@ const AddProduct = ()=>{
 
 return(
     <>
-    <Container>
-      <Row className="justify-content-md-center">
-        <Col md="6">
-        
-          <h2 className="text-center my-4">Add a new product</h2>
-          {message && <Alert variant="info">{message}</Alert>}
-          <Form>
-            <Form.Group controlId="formName">
-              <Form.Label>Product name</Form.Label>
-              <Form.Control
-                type="text"
-                placeholder="product name"
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-              />
-            </Form.Group>
+     <div className="container">
+      <div className="row justify-content-center">
+        <div className="col-md-6">
+          <div className="card add-product-card">
+            <div className="card-body">
+              <h2 className="card-title text-center mb-4">Add a new product</h2>
+              {message && <div className="alert alert-info">{message}</div>}
+              <form>
+                <div className="mb-3">
+                  <label htmlFor="productName" className="form-label">
+                    Product name
+                  </label>
+                  <input
+                    type="text"
+                    className="form-control"
+                    id="productName"
+                    placeholder="Enter product name"
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
+                  />
+                </div>
 
-            <Form.Group controlId="formDescription" className="mt-3">
-              <Form.Label>Description</Form.Label>
-              <Form.Control
-                as="textarea"
-                rows={3}
-                placeholder="Enter product description"
-                value={description}
-                onChange={(e) => setDescription(e.target.value)}
-              />
-            </Form.Group>
+                <div className="mb-3">
+                  <label htmlFor="productDescription" className="form-label">
+                    Description
+                  </label>
+                  <textarea
+                    className="form-control"
+                    id="productDescription"
+                    rows="3"
+                    placeholder="Enter product description"
+                    value={description}
+                    onChange={(e) => setDescription(e.target.value)}
+                  ></textarea>
+                </div>
 
-            <Form.Group controlId="formPrice" className="mt-3">
-              <Form.Label>Price</Form.Label>
-              <Form.Control
-                type="number"
-                placeholder="Enter the price"
-                value={price}
-                onChange={(e) => setPrice(e.target.value)}
-              />
-            </Form.Group>
+                <div className="mb-3">
+                  <label htmlFor="productPrice" className="form-label">
+                    Price
+                  </label>
+                  <input
+                    type="number"
+                    className="form-control"
+                    id="productPrice"
+                    placeholder="Enter the price"
+                    value={price}
+                    onChange={(e) => setPrice(e.target.value)}
+                  />
+                </div>
 
-            <Form.Group controlId="formQuantity" className="mt-3">
-              <Form.Label>Quantity</Form.Label>
-              <Form.Control
-                type="number"
-                placeholder="Enter the quantity"
-                value={quantity}
-                onChange={(e) => setQuantity(e.target.value)}
-              />
-            </Form.Group>
+                <div className="mb-3">
+                  <label htmlFor="productQuantity" className="form-label">
+                    Quantity
+                  </label>
+                  <input
+                    type="number"
+                    className="form-control"
+                    id="productQuantity"
+                    placeholder="Enter the quantity"
+                    value={quantity}
+                    onChange={(e) => setQuantity(e.target.value)}
+                  />
+                </div>
 
-            <Form.Group controlId="formCategory" className="mt-3">
-              <Form.Label>Category</Form.Label>
-              <Form.Control
-                as="select"
-                value={selectedCategory}
-                onChange={(e) => setSelectedCategory(e.target.value)}
-              >
-                <option value="">Select caegory</option>
-                {category.map((category) => (
-                  <option key={category} value={category}>
-                    {category}
-                  </option>
-                ))}
-              </Form.Control>
-            </Form.Group>
+                <div className="mb-3">
+                  <label htmlFor="productCategory" className="form-label">
+                    Category
+                  </label>
+                  <select
+                    className="form-control"
+                    id="productCategory"
+                    value={selectedCategory}
+                    onChange={(e) => setSelectedCategory(e.target.value)}
+                  >
+                    <option value="">Select category</option>
+                    {category.map((category) => (
+                      <option key={category} value={category}>
+                        {category}
+                      </option>
+                    ))}
+                  </select>
+                </div>
 
-            <Form.Group controlId="formImage" className="mt-3">
-              <Form.Label>product image</Form.Label>
-              <Form.Control
-                type="file"
-                
-                onChange={(e) => setImage(e.target.files[0])}
-              />
-              <Button className="mt-2" onClick={uploadImage}>
-                Uploaded
-              </Button>
-             </Form.Group>
-            <Button
-              variant="primary"
-              className="mt-4"
-              onClick={handelOnClicAddProduct}
-            >
-              Add product
-            </Button>
-          </Form>
-          
-        </Col>
-      </Row>
-    </Container>
+                <div className="mb-3">
+                  <label htmlFor="productImage" className="form-label">
+                    Product image
+                  </label>
+                  <input
+                    type="file"
+                    className="form-control"
+                    id="productImage"
+                    onChange={uploadImage}
+                  />
+                </div>
+
+                <button
+                  type="button"
+                  className="btn btn-primary btn-block"
+                  onClick={handelOnClicAddProduct}
+                >
+                  Add product
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
 
     </>
 )

@@ -27,6 +27,7 @@ const Login = ()=>{
             console.log(token);
             setToken(token);
             localStorage.setItem("token",token)
+            localStorage.setItem("role" , response.data.role)
             setIsLoggedIn(true)
             localStorage.setItem("isLoggedIn",true)
             navigate('/')
@@ -41,7 +42,7 @@ const Login = ()=>{
           firstName,
           lastName,
           age,
-          role:"66703c5b6ad6eec8649bda5b",
+          role:"",
           email,
           password,
         }
@@ -155,6 +156,7 @@ const Login = ()=>{
           </Form>
         </Col>
       </Row>
+
     </Container>
 
 

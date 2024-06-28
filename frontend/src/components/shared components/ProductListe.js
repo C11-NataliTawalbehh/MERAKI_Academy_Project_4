@@ -1,32 +1,32 @@
 
-import React from 'react';
-import { Card, Row, Col } from 'react-bootstrap';
-import { useState,useContext ,useEffect } from "react";
-import { Link, useParams } from "react-router-dom";
-import { UserContext } from '../../App';
-import axios from 'axios';
-const ProductList = ({searchResult})=> {
+// import React from 'react';
+// import { Card, Row, Col } from 'react-bootstrap';
+// import { useState,useContext ,useEffect } from "react";
+// import { Link, useParams } from "react-router-dom";
+// import { UserContext } from '../../App';
+// import axios from 'axios';
+// const ProductList = ({searchResult})=> {
 
  
-  return (
+//   return (
   
-    <Row>
-     <div>
-      {searchResult && searchResult.length > 0 ? (
-        <ul>
-          {searchResult.map((item) => (
-            <li key={item.id}>{item.name}</li>
-          ))}
-        </ul>
-      ) : (
-        <p>No products found.</p>
-      )}
-    </div>
-    </Row>
-  );
-}
+//     <Row>
+//      <div>
+//       {searchResult && searchResult.length > 0 ? (
+//         <ul>
+//           {searchResult.map((item) => (
+//             <li key={item.id}>{item.name}</li>
+//           ))}
+//         </ul>
+//       ) : (
+//         <p>No products found.</p>
+//       )}
+//     </div>
+//     </Row>
+//   );
+// }
 
-export default ProductList;
+// export default ProductList;
 
 
 

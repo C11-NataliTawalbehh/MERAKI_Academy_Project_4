@@ -8,29 +8,27 @@ import { MdFavoriteBorder } from "react-icons/md";
 import { RiLogoutCircleRLine } from "react-icons/ri";
 import "./Navbar.css"
 const Navbar = ()=>{
-   const {isLoggedIn , handelLogout ,handelLogin} = useContext(UserContext)
+   const {isLoggedIn , handelLogout ,role , Admin} = useContext(UserContext)
    return (
      <>
        <div className="App">
 
     <nav>
-      
-        
-          <Link to={"/login"}><FiUser /> </Link>
-        
-          <Link to={"/add-product"}><FiAlignCenter /> </Link>
-        
-        
-          <Link to={"/Checkout"}><FiClipboard /> </Link>
-        
-        
-          <Link to={"/"}><FaHome /> </Link>
-        
-          <Link to={"/cart/:productId"}><FaShoppingCart /> </Link>
-
-          <Link to={"/favorites"}><MdFavoriteBorder /></Link>
-          <NavLink to="/" onClick={handelLogout}><RiLogoutCircleRLine /></NavLink>
+    <Link to={"/"} title="Homepage"><FaHome /> </Link>
+      {isLoggedIn ? (
+         <div className="isLoggedIn">
+            {role === Admin && <Link to={"/add-product"} title="Add Product"><FiAlignCenter /> </Link>}
+            <Link to={"/Checkout"} title="Checkout"><FiClipboard /> </Link>
+            <Link to={"/cart/:productId"} title="Cart"><FaShoppingCart /> </Link>
+            <Link to={"/favorites"} title="Favorites"><MdFavoriteBorder /></Link>
+            <NavLink to="/" onClick={handelLogout} title="Logout"><RiLogoutCircleRLine /></NavLink>
+         </div>
           
+      ):(
+         <Link to={"/login"} title="Login"><FiUser /> </Link>
+      )}
+        
+     
        
       
     </nav>
@@ -42,3 +40,7 @@ const Navbar = ()=>{
 }
 
 export default Navbar;
+
+
+
+   

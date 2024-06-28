@@ -3,9 +3,11 @@ import axios from "axios";
 import { UserContext } from "../../App";
 import { Container, Row, Col, Form, Button, Alert } from "react-bootstrap";
 import "./AddCheckout.css"
+import { FaInstagramSquare } from "react-icons/fa";
+import { FaFacebookSquare } from "react-icons/fa";
 const AddCheckout = () =>{
+    
     const [fromData , setFromData]= useState({
-        provid:"",
         paymentIsCash:false,
         fullName:"",
         phoneNumber:"",
@@ -25,9 +27,9 @@ const AddCheckout = () =>{
     const handleOnClick = async() =>{
     
         try{
-            const response = await axios.get("http://localhost:5000/checkout/" , fromData ,{headers:{
+            const response = await axios.post("http://localhost:5000/checkout/" , fromData ,{headers:{
                 Authorization:`Bearer ${token}` 
-              }})
+             }})
               setSuccess("Checkout created successfully")
               setError("")
         }catch(error){
@@ -42,7 +44,7 @@ const AddCheckout = () =>{
         <Col md="6">
           <h2>Checkout</h2>
           <Form>
-            <Form.Group controlId="formProvid">
+            {/* <Form.Group controlId="formProvid">
               <Form.Label>Provider ID</Form.Label>
               <Form.Control
                 type="text"
@@ -51,7 +53,7 @@ const AddCheckout = () =>{
                 value={fromData.provid}
                 onChange={handleChange}
               />
-            </Form.Group>
+            </Form.Group> */}
 
             <Form.Group controlId="formPaymentIsCash">
               <Form.Check
@@ -127,6 +129,18 @@ const AddCheckout = () =>{
           </Form>
         </Col>
       </Row>
+
+      <div className="footer">
+        <p className="footer-text">STAY ON TOP OF THE LATEST TRENDS.
+          <br />
+          Follow us on Instagram and Facebook.</p>
+        <a href="https://www.instagram.com/concretenatalia?igsh=MWhnejcxZnp4bDU3Ng==" rel="noopener noreferrer">
+          <FaInstagramSquare className="icon" />
+        </a>
+        <a href="https://www.facebook.com/profile.php?id=61554426860072&mibextid=ZbWKwL" rel="noopener noreferrer">
+          <FaFacebookSquare className="icon" />
+        </a>
+      </div>
     </Container>
 
         </>

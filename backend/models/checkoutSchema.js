@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 
 const checkoutSchema = new mongoose.Schema({
-    provid:[{idProduct:{type:mongoose.Schema.Types.ObjectId , ref:"FavoriteCart"},quantity:{type:String}}],
+    // provid:[{idProduct:{type:mongoose.Schema.Types.ObjectId , ref:"FavoriteCart"},quantity:{type:Number}}],
     paymentIsCash:{type:Boolean},
     fullName: {type: String, required: true},
     phoneNumber: {type: Number, required: true},

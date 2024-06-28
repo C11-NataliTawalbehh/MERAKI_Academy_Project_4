@@ -2,6 +2,7 @@
     font-family: Arial, sans-serif;
     background-color: #f8f9fa; /* خلفية الصفحة */
     padding: 20px; /* تباعد داخلي */
+    text-align: center;
   }
   
   nav {
@@ -9,6 +10,12 @@
     padding: 10px 0; /* حشو الأعلى والأسفل */
     display: flex;
     justify-content: center;
+    align-items: center;
+    border-bottom: 1px solid #e7e7e7;
+  }
+  .isLoggedIn{
+    display: flex;
+    align-items: center;
   }
 
   nav a {
@@ -20,6 +27,7 @@
     align-items: center; /* محاذاة النص والأيقونة في وسط الرابط */
     transition: color 0.3s ease; /* تحويل تدريجي للون عند التحويم */
     width: 100px;
+ 
   }
   
   nav a:hover {
@@ -28,4 +36,6 @@
   
   .nav-icons {
     margin-right: 10px; /* هامش من اليمين للأيقونات */
+    display: flex;
+    align-items: center;
   }

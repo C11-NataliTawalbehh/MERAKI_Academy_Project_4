@@ -40,24 +40,24 @@
 
 
 .name-container {
-  padding: 0px 0; /* Padding top and bottom */
-  text-align: center; /* Center align content */
+  padding: 0px 0; 
+  text-align: center; 
 }
 
 /* Styling for the logo image */
 .logo-img {
-  width: 250px; /* Width of the logo image */
-  height: auto; /* Maintain aspect ratio */
+  width: 250px; 
+  height: auto; 
 
 }
 
 /* Styling for the name text */
-.name-text {
-  font-family: 'Arial', sans-serif; /* Font family */
-  color: #333; /* Text color */
-  font-size: 3rem; /* Font size */
-  margin-top: 20px; /* Margin top */
-}
+/* .name{
+  font-family: 'Arial', sans-serif; 
+  color: black; 
+  font-size: 60px; 
+  margin-top: 20px; 
+} */
 .name-text::after,
 .name-text::before {
   content: '';
@@ -77,8 +77,56 @@
   background-color: #f8f9fa; 
   padding: 20px; 
 } 
+.name {
+  font-family: 'Arial', sans-serif;
+  font-size: 60px;
+  margin-top: 20px;
+  position: relative; /* Ensure position is set to enable pseudo-elements */
+  display: inline-block; /* Display as inline-block to allow pseudo-elements */
+  animation: colorChange 20s linear infinite; /* Animation for color change */
+}
+
+/* Define keyframes for color change */
+@keyframes colorChange {
+  0%, 100% {
+    color: #f48fb1; /* Initial and final color */
+  }
+  25% {
+    color: #f50057; /* Color change at 10 seconds */
+  }
+  50% {
+    color: #880e4f; /* Color change at 20 seconds */
+  }
+  75% {
+    color: #76ff03; /* Color change at 30 seconds */
+  }
+}
+
+.name::after,
+.name::before {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 1px;
+  background-color: #080909; /* Underline color */
+  bottom: -5px;
+  left: 0;
+}
+
+.name::before {
+  top: -5px;
+}
 
 
+
+/* تصميم النص */
+/* .left-corner h1 {
+  transform-origin: bottom left; 
+}
+
+.right-corner h1 {
+  transform-origin: bottom right; 
+} */
 
 
 

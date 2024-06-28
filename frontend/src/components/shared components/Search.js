@@ -6,8 +6,6 @@ import { Form, Button, Container, Row, Col } from 'react-bootstrap';
 import ProductDetails from "./ProductDetails";
 import { Card, Badge } from "react-bootstrap"
 import "./Search.css"
-import { Navbar, Nav } from 'react-bootstrap';
-import { IoMdSearch } from "react-icons/io";
 import { FaSearch } from "react-icons/fa";
 const Search = () => {
   const { token } = useContext(UserContext);

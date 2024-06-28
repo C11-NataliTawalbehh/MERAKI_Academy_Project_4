@@ -3,16 +3,14 @@ import axios from 'axios';
 import { Link, useParams } from 'react-router-dom';
 import { UserContext } from "../../App";
 import "./Cart.css"
+import { FaInstagramSquare } from "react-icons/fa";
+import { FaFacebookSquare } from "react-icons/fa";
 const Cart = () => {
   const {user} = useParams()
   const [cart,setCart] = useState([]);
   const [ url, setUrl ] = useState("");
   const [name , setName] = useState("")
-  //   const [description , setDescription] =useState("");
-  //   const [price ,setPrice] = useState("");
-  //   const [quantity ,setQuantity] = useState("");
-  const [product , setProduct] = useState([])
-  // const [allCart , setAllCart] = useState([])
+  const [quantity, setQuantity] = useState(1);
   const {token}=useContext(UserContext);
   const [totalPrice , setTotalPrice] = useState(0)
 
@@ -56,10 +54,21 @@ const Cart = () => {
   const calculateTotalPrice = (item)=>{
     // console.log(item);
       let total = parseFloat(item.price)
-    total += parseFloat(item.quantity)
+    total *= parseFloat(quantity)
      return total;
   }
 
+  const totalPrices = ()=>{
+    const total = cart.reduce((acc , item)=>{
+      return acc+item.product.reduce((acc , prod)=>{
+        return acc + (parseFloat(prod.id.price)*prod.quantity)
+      },0)
+      
+    },0)
+    return total.toFixed(2);
+  }
+
+ 
 
   return(
 
@@ -76,19 +85,37 @@ const Cart = () => {
                     {/* <img src={prod.id.image[0]}/> */}
                     <h3>{prod.id.name}</h3>
                     <span className="badge bg-primary me-2">{prod.id.price}jd</span>
-                    
-                  <button onClick={()=>handelDeleteCart(prod.id._id)}>Delete</button>
-                  <p className='total-price'>Total: jd{calculateTotalPrice(prod.id)}</p>
+               
+                  <button onClick={()=>handelDeleteCart(prod.id._id)} className='delete'>Delete</button>
+                  {/* <p className='total-price'>price: jd{calculateTotalPrice(prod.id )}</p> */}
                   </div>
                 )
               })}
-                 <Link to={"/Checkout"}>Paying off</Link>
+              <p className='total'>Total Cart Price :
+                <br/>
+                {totalPrices()} jd</p>
+                 <Link to={"/Checkout"} className='checkout'>Checkout</Link>
+                 
             </div>)
           ))}
           
         </div>
       ) : (
+        <div>
         <p>Your cart is empty.</p>
+
+        <div className="footer">
+        <p className="footer-text">STAY ON TOP OF THE LATEST TRENDS.
+          <br />
+          Follow us on Instagram and Facebook.</p>
+        <a href="https://www.instagram.com/concretenatalia?igsh=MWhnejcxZnp4bDU3Ng==" rel="noopener noreferrer">
+          <FaInstagramSquare className="icon" />
+        </a>
+        <a href="https://www.facebook.com/profile.php?id=61554426860072&mibextid=ZbWKwL" rel="noopener noreferrer">
+          <FaFacebookSquare className="icon" />
+        </a>
+      </div>
+      </div>
       )}
     </div>
 

@@ -13,7 +13,7 @@ productRouter.post("/:id/comment" ,authentication,authorization("CREATE_COMMENT"
 productRouter.post("/" , authentication,authorization("CREATE_PRODUCT"),createNewProduct);
 productRouter.get("/" , authentication,getAllProduct);
 productRouter.put("/:id" ,authorization("UPDATE_PRODUCT"), updateProductById);
-productRouter.delete("/:id" ,authentication,deleteProductById);
+productRouter.delete("/:id" ,authentication,authorization("DELETE_PRODUCT"),deleteProductById);
 productRouter.delete("/:productId/comment/:commentId", deleteCommentById);
 productRouter.get("/category/:category",authentication ,getProductByCategory)
 productRouter.get("/search_1",authentication,searchProduct)
