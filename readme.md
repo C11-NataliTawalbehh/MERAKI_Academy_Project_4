@@ -1,6 +1,6 @@
+![alt text](frontend/images/Natalia3.gif)
 <p align="center">
 <a href="https://www.meraki-academy.org" target="_blank" rel="noopener noreferrer">
- <img width="400px" height="100px" src="/assets\Natalia3.gif" alt="Project logo">
  </a>
 </p>
 
@@ -147,19 +147,21 @@ Use this space to show useful examples of how a project can be used. Additional 
 Ex.
 
 - You don't have to register to navigate our web app
-<img width=200px height=200px src="C:\Users\DELL\Desktop\Screenshot_141.png" alt="Diagram"></a>
+![alt text](frontend/images/Screenshot_141.png)
 - You can click on the **Home** tab provided in the navigation bar to view the home section
-<img width=200px height=200px src="C:\Users\DELL\Desktop\Screenshot_13.png" alt="Diagram"></a>
+![alt text](frontend/images/Screenshot_13.png)
 - You can click on the **Add to cart** button to add this product to your cart but you have to be one of our users, so you should create an account
-<img width=200px height=200px src="C:\Users\DELL\Desktop\Screenshot_191.png" alt="Diagram"></a>
+![alt text](frontend/images/Screenshot_221.png)
 -the cart page when logging in to he website .
-<img width=200px height=200px src="C:\Users\DELL\Desktop\Screenshot_221.png" alt="Diagram"></a>
+![alt text](frontend/images/Screenshot_112.png)
 -page for favorites
-<img width=200px height=200px src="C:\Users\DELL\Desktop\Screenshot_211.png" alt="Diagram"></a>
+![alt text](frontend/images/Screenshot_113.png)
 -page for checkout
-<img width=200px height=200px src="C:\Users\DELL\Desktop\Screenshot_232.png" alt="Diagram"></a>
+![alt text](frontend/images/Screenshot_232.png)
+-product detailes
+![alt text](frontend/images/Screenshot_191.png)
 -Footer
-<img width=200px height=200px src="C:\Users\DELL\Documents\Lightshot\Screenshot_20.png" alt="Diagram"></a>
+![alt text](frontend/images/Screenshot_111.png)
 ## ⛏️ Built Using <a name = "built_using"></a>
 
 - [MongoDB](https://www.mongodb.com/) - Database
@@ -172,9 +174,11 @@ Ex.
 Your trello board link
 <a href='https://trello.com/b/MpCYgdEs/project-4'>Trello</a>
 
-## Data Flow <a name = "#data_flow"></a>
+![alt text](frontend/images/Screenshot_115.png)
 
-<img width=200px height=200px src="C:\Users\DELL\Desktop\Screenshot_11.png" alt="Diagram"></a>
+## Data Flow <a name = "#data_flow"></a>
+your Moqups 
+![alt text](frontend/images/Screenshot_116.png)
 
 ## ⚠️ Guided By <a name = "guided_by"></a>
 

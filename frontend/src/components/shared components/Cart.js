@@ -10,6 +10,12 @@ const Cart = () => {
   const [cart,setCart] = useState([]);
   const [ url, setUrl ] = useState("");
   const [name , setName] = useState("")
+  // const [product, setProduct] = useState(null);
+  //   const [description , setDescription] =useState("");
+  //   const [price ,setPrice] = useState("");
+  //   const [quantity ,setQuantity] = useState("");
+  const [product , setProduct] = useState([])
+  // const [allCart , setAllCart] = useState([])
   const [quantity, setQuantity] = useState(1);
   const {token}=useContext(UserContext);
   const [totalPrice , setTotalPrice] = useState(0)

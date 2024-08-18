@@ -11,6 +11,9 @@ const AddProduct = ()=>{
     const [price ,setPrice] = useState("");
     const [quantity ,setQuantity] = useState("");
     const [selectedCategory ,setSelectedCategory] = useState("")
+    const [categoryName , setCategoryName] = useState("")
+    const [comment , setComment] = useState("");
+    const [user ,setUser] = useState("");
     const [message , setMessage] = useState("");
     const [rating ,setRating] = useState(0)
     const {token}=useContext(UserContext)
